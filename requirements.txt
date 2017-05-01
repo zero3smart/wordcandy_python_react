@@ -32,3 +32,4 @@ simplejson==3.10.0
 six==1.10.0
 stripe==1.51.0
 uritemplate==3.0.0
+whitenoise==3.3.0

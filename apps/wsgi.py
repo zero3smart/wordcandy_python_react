@@ -1,22 +1,5 @@
-"""
-WSGI config for apps project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
-"""
-
-import os, sys, site
-
-sys.path.insert(0, os.path.dirname(__file__))
-
-site.addsitedir('/home/ubuntu/wordcandy.io/env/lib/python2.7/site-packages')
-
-sys.path.append('/home/ubuntu/wordcandy.io/apps')
-
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "apps.settings")
+from whitenoise.django import DjangoWhiteNoise
 
 application = get_wsgi_application()
+application = DjangoWhiteNoise(application)
