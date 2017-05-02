@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"bundle.js","path":"/Users/dmitry/Work/byte-up/django/wordcandy.io/apps/assets/bundles/bundle.js"},{"name":"bundle.css","path":"/Users/dmitry/Work/byte-up/django/wordcandy.io/apps/assets/bundles/bundle.css"}]}}
+{ "status": "done", "chunks": { "main": [{ "name": "bundle.js", "path": "/Users/dmitry/Work/byte-up/django/wordcandy/static/bundles/bundle.js" }, { "name": "bundle.css", "path": "/Users/dmitry/Work/byte-up/django/wordcandy/static/bundles/bundle.css" }] } }
