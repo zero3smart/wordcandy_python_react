@@ -18,4 +18,4 @@ DATABASES = {
     }
 }
 
-URL = 'http://0.0.0.0:8000'
+URL = 'https://polar-hamlet-18270.herokuapp.com'
