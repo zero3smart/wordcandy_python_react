@@ -62,17 +62,30 @@ class KeywordToolView(APIView):
         Return result from keywordtool
         """
         keywords = request.GET.get('tags', '')
-        payload = {
-            'apikey': settings.KEYWORDTOOL,
-            'keyword': '[{0}]'.format(keywords),
-            'metrics_location': '1014218',
-            'metrics_language': 'en',
-            'output': 'json',
-            'metrics': 'true'
+        result = {
+            'keywords': []
         }
-        result = requests.get(
-            'http://api.keywordtool.io/v2/search/suggestions/amazon', params=payload)
-        return Response(result.json())
+
+        for word in keywords.split(','):
+            payload = {
+                'apikey': settings.KEYWORDTOOL,
+                'keyword': '[{0}]'.format(word),
+                'output': 'json',
+                'country': 'us',
+                'language': 'en',
+                'metrics': 'true',
+                'metrics_location': '2840',
+                'metrics_language': 'en'
+            }
+            data = requests.get('http://api.keywordtool.io/v2/search/suggestions/amazon', params=payload)
+            for item in data.json()['results']:
+                for sub_item in data.json()['results'][item]:
+                    if sub_item['volume']:
+                        result['keywords'].append({
+                            'name': sub_item['string'],
+                            'volume': sub_item['volume']
+                        })
+        return Response(result)
 
 
 class ExcelView(APIView):

@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
             antonyms: [],
             stats: [],
             loaded: true,
-            url: 'https://polar-hamlet-18270.herokuapp.com/'
+            url: 'http://0.0.0.0:8000'
         };
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
@@ -70,22 +70,11 @@ export default class Dashboard extends Component {
             axios.get(format('{0}/v1/dashboard/antonyms/', _.state.url), data).then(function(response) {
                 _.setState({ antonyms: response.data['antonyms'] });
                 axios.get(format('{0}/v1/dashboard/keywordtool/', _.state.url), data).then(function(response) {
-                    var stats = [];
-                    Object.keys(response.data.results).forEach(function(key, index) {
-                        if (index > 0) {
-                            (response.data.results[key]).forEach(function(element) {
-                                if (element.volume) {
-                                    stats.push({ 'name': element.string, 'volume': element.volume })
-                                }
-                            });
-                        }
-                    });
-                    _.setState({ stats: stats })
+                    _.setState({ stats: response.data['keywords'] })
                     _.setState({ loaded: true })
                 }).catch(function(error) {
                     console.log(error);
                 });
-
             }).catch(function(error) {
                 console.log(error);
             });
@@ -343,90 +332,4 @@ export default class Dashboard extends Component {
             Grid >
         );
     }
-}
-Col md = { 6 } >
-    <
-    FormGroup >
-    <
-    FormControl type = "text"
-placeholder = "Add description" / >
-    <
-    /FormGroup> < /
-    Col > <
-    Col md = { 6 } >
-    <
-    FormGroup >
-    <
-    FormControl type = "text"
-placeholder = "Add description" / >
-    <
-    /FormGroup> < /
-    Col > <
-    /Row> < /
-    Panel > <
-    /Col> < /
-    Row > <
-    /Col> <
-Col md = { 3 } >
-    <
-    Loader loaded = { this.state.loaded } >
-    <
-    Panel header = "Synonyms" > {
-        this.state.synonyms.length == 0 ?
-        <
-        div > Empty < /div> :
-        null
-    } <
-    ul className = "fixed-panel" > {
-        this.state.synonyms.map(function(item, i) {
-            return <li > { item } < /li>
-        }, this)
-    }
-
-<
-/ul> < /
-Panel > <
-    /Loader> <
-Loader loaded = { this.state.loaded } >
-    <
-    Panel header = "Antonyms" > {
-        this.state.antonyms.length == 0 ?
-        <
-        div > Empty < /div> :
-        null
-    } <
-    ul className = "fixed-panel" > {
-        this.state.antonyms.map(function(item, i) {
-            return <li > { item } < /li>
-        }, this)
-    }
-
-<
-/ul> < /
-Panel > <
-    /Loader> < /
-    Col > <
-    /Row> <
-br / >
-    <
-    hr / >
-    <
-    div id = "footer" >
-    <
-    Row >
-    <
-    Col md = { 2 } > < /Col> <
-Col md = { 8 }
-className = "text-right" >
-    <
-    Button onClick = { this.exportData } >
-    Export data <
-    /Button> < /
-    Col > <
-    Col md = { 2 } > < /Col> < /
-    Row > <
-    /div> < /
-    Grid >
-);
-}
 }
