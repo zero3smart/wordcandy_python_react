@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
             antonyms: [],
             stats: [],
             loaded: true,
-            url: 'http://0.0.0.0:8000'
+            url: 'https://wordcandy.herokuapp.com'
         };
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
@@ -93,10 +93,10 @@ export default class Dashboard extends Component {
             <
             Navbar.Brand >
             <
-            a href = "#" > WORDCANDY.IO < /a> < /
-            Navbar.Brand > <
-            /Navbar.Header> < /
-            Navbar > <
+            a href = "#" > WORDCANDY.IO < /a> <
+            /Navbar.Brand> <
+            /Navbar.Header> <
+            /Navbar> <
             Row >
             <
             Col md = { 3 } >
@@ -120,10 +120,10 @@ export default class Dashboard extends Component {
             multiple = { false }
             rejectStyle >
             <
-            Button block > Upload image(.jpg / .png) < /Button> < /
-            Dropzone > <
-            /Panel> < /
-            Col > <
+            Button block > Upload image(.jpg / .png) < /Button> <
+            /Dropzone> <
+            /Panel> <
+            /Col> <
             Col md = { 6 } >
             <
             Row >
@@ -142,40 +142,40 @@ export default class Dashboard extends Component {
             <
             TagsInput value = { this.state.tags }
             onChange = {::this.handleChangeTags }
-            /> < /
-            FormGroup > <
+            /> <
+            /FormGroup> <
             /Col> <
             Col md = { 3 } >
             <
             Button onClick = { this.calculate } >
             Calculate <
-            /Button> < /
-            Col > <
-            /Row> < /
-            Form > <
-            /Panel> < /
-            Col > <
+            /Button> <
+            /Col> <
+            /Row> <
+            /Form> <
+            /Panel> <
+            /Col> <
             Col >
             <
             Loader loaded = { this.state.loaded } >
             <
             Panel header = "Amazon keywords auto suggest" > {
                 this.state.stats.length == 0 ?
-                <
-                div > Empty < /div> :
-                null
+                < div > Empty < /div> :
+                    null
             } <
             ul className = "fixed-panel" > {
                 this.state.stats.map(function(item, i) {
-                    return <li > { item.name } - { item.volume } < /li>
+                    return <li > { item.name } -
+                        { item.volume } < /li>
                 }, this)
             } <
-            /ul> < /
-            Panel > <
-            /Loader> < /
-            Col > <
-            /Row> < /
-            Col > <
+            /ul> <
+            /Panel> <
+            /Loader> <
+            /Col> <
+            /Row> <
+            /Col> <
             Col md = { 3 } >
             <
             Panel className = "text-center"
@@ -187,10 +187,10 @@ export default class Dashboard extends Component {
             rounded / >
             <
             /p> <
-            Button block > View Analytics < /Button> < /
-            Panel > <
-            /Col> < /
-            Row > <
+            Button block > View Analytics < /Button> <
+            /Panel> <
+            /Col> <
+            /Row> <
             Row >
             <
             Col md = { 9 } >
@@ -207,27 +207,27 @@ export default class Dashboard extends Component {
             NavItem eventKey = "1" > Amazon < /NavItem> <
             NavItem eventKey = "2" > TeePublic < /NavItem> <
             NavItem eventKey = "3" > TeeSpring < /NavItem> <
-            NavItem eventKey = "4" > RedBuble < /NavItem> < /
-            Nav > <
+            NavItem eventKey = "4" > RedBuble < /NavItem> <
+            /Nav> <
             h5 > Temapltes < /h5> <
             ul className = "list-inline" >
             <
             li >
             <
-            Button disabled > None < /Button> < /
-            li > <
+            Button disabled > None < /Button> <
+            /li> <
             li >
             <
-            Button > Summertime T - shirt < /Button> < /
-            li > <
+            Button > Summertime T - shirt < /Button> <
+            /li> <
             li >
             <
-            Button > Holiday T - shirt < /Button> < /
-            li > <
+            Button > Holiday T - shirt < /Button> <
+            /li> <
             li >
             <
-            Button > Tropical T - shirt < /Button> < /
-            li > <
+            Button > Tropical T - shirt < /Button> <
+            /li> <
             /ul> <
             br / >
             <
@@ -240,8 +240,8 @@ export default class Dashboard extends Component {
             FormControl type = "text"
             placeholder = "Enter prodcut title" / >
             <
-            /FormGroup> < /
-            Col > <
+            /FormGroup> <
+            /Col> <
             /Row> <
             br / >
             <
@@ -254,8 +254,8 @@ export default class Dashboard extends Component {
             FormControl type = "text"
             placeholder = "Add description" / >
             <
-            /FormGroup> < /
-            Col > <
+            /FormGroup> <
+            /Col> <
             Col md = { 6 } >
             <
             FormGroup >
@@ -263,12 +263,12 @@ export default class Dashboard extends Component {
             FormControl type = "text"
             placeholder = "Add description" / >
             <
-            /FormGroup> < /
-            Col > <
-            /Row> < /
-            Panel > <
-            /Col> < /
-            Row > <
+            /FormGroup> <
+            /Col> <
+            /Row> <
+            /Panel> <
+            /Col> <
+            /Row> <
             /Col> <
             Col md = { 3 } >
             <
@@ -276,9 +276,8 @@ export default class Dashboard extends Component {
             <
             Panel header = "Synonyms" > {
                 this.state.synonyms.length == 0 ?
-                <
-                div > Empty < /div> :
-                null
+                < div > Empty < /div> :
+                    null
             } <
             ul className = "fixed-panel" > {
                 this.state.synonyms.map(function(item, i) {
@@ -287,16 +286,15 @@ export default class Dashboard extends Component {
             }
 
             <
-            /ul> < /
-            Panel > <
+            /ul> <
+            /Panel> <
             /Loader> <
             Loader loaded = { this.state.loaded } >
             <
             Panel header = "Antonyms" > {
                 this.state.antonyms.length == 0 ?
-                <
-                div > Empty < /div> :
-                null
+                < div > Empty < /div> :
+                    null
             } <
             ul className = "fixed-panel" > {
                 this.state.antonyms.map(function(item, i) {
@@ -305,10 +303,10 @@ export default class Dashboard extends Component {
             }
 
             <
-            /ul> < /
-            Panel > <
-            /Loader> < /
-            Col > <
+            /ul> <
+            /Panel> <
+            /Loader> <
+            /Col> <
             /Row> <
             br / >
             <
@@ -324,12 +322,12 @@ export default class Dashboard extends Component {
             <
             Button onClick = { this.exportData } >
             Export data <
-            /Button> < /
-            Col > <
-            Col md = { 2 } > < /Col> < /
-            Row > <
-            /div> < /
-            Grid >
+            /Button> <
+            /Col> <
+            Col md = { 2 } > < /Col> <
+            /Row> <
+            /div> <
+            /Grid>
         );
     }
 }
