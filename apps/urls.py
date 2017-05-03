@@ -27,7 +27,8 @@ schema_view = get_swagger_view(title='WORDCANDY.IO API')
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name="index"),
-    url(r'^dashboard/$', IndexView.as_view(), name="index"),
+    url(r'^dashboard/$', IndexView.as_view(), name="dashboard"),
+    url(r'^landing/$', IndexView.as_view(), name="landing"),
     url(r'^admin/', admin.site.urls),
     url(r'^docs/$', schema_view),
     url(r'^v1/', include('rest_auth.urls')),

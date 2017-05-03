@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import Main from './views/main';
 import Dashboard from './views/dashboard';
+import Landing from './views/landing';
 
 function run() {
     ReactDOM.render(( <
@@ -13,8 +14,11 @@ function run() {
         /> <
         Route path = "/dashboard"
         component = { Dashboard }
-        /> < /
-        Router >
+        /> <
+        Route path = "/landing"
+        component = { Landing }
+        /> <
+        /Router>
     ), document.getElementById('app'));
 }
 
