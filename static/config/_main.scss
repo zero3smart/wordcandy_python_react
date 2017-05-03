@@ -1,14 +1,2 @@
-.fixed-panel {
-    height: 50px;
-    overflow-y: scroll;
-}
-
-#footer {
-    padding: 10px;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 50px;
-    width: 100%;
-    background: #999;
-}
+@import 'css/landing';
+@import 'css/main';

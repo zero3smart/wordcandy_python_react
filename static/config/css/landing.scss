@@ -1,0 +1,28 @@
+$landing-bakcground: #f3f7fd;
+
+.landing-page {
+  .navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+    .text-success a, .text-success a:hover, .text-success a:focus {
+      color: $success;
+    }
+    .text-secondary a, .text-secondary a:hover, .text-secondary a:focus {
+      color: $secondary;
+    }
+  }
+  .main {
+    background: url('/static/images/landing/background-main.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .price {
+    background: url('/static/images/landing/background-price.png') no-repeat;
+    background-color: $landing-bakcground;
+  }
+  .testimonals {
+    background-color: $landing-bakcground;
+  }
+}

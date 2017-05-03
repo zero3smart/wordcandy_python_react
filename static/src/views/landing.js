@@ -25,8 +25,8 @@ export default class Landing extends Component {
 
     render() {
         return (
-            <Grid>
-                <Row>
+            <Grid className="landing-page" fluid={true}>
+                <Row className="main">
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
@@ -34,41 +34,35 @@ export default class Landing extends Component {
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav pullRight>
-                            <NavItem href="#">Get Started</NavItem>
-                            <NavItem href="#">Login</NavItem>
+                            <NavItem href="#" className="text-secondary">Get Started</NavItem>
+                            <NavItem href="#" className="text-success">Login</NavItem>
                         </Nav>
                     </Navbar>
-                </Row>
-                <Row>
                     <Col md={12} className="text-center">
-                        <h1>MEET CANDY WORDS TO MERCH RIGHT</h1>
+                        <h1 className="text-primary">MEET CANDY WORDS TO MERCH RIGHT</h1>
                     </Col>
-                </Row>
-                <Row>
                     <Col md={3}></Col>
                     <Col md={6}>
                         <p class="text-center">WORDCANDY.IO created to help sellers present their products as much effective and save time. We aims to power your business with valuable tool for every day use. Upgrade your selling companies with magic keywords that works.</p>
                     </Col>
                     <Col md={3}></Col>
-                </Row>
-                <Row>
                     <Col md={12} className="text-center">
                         <br/>
                         <br/>
-                        <Image src="http://lorempixel.com/output/abstract-q-c-640-480-9.jpg"/>
+                        <Image src="/static/images/landing/example.png" />
                     </Col>
                 </Row>
-                <Row>
+                <Row className="price">
                     <Col md={2}></Col>
                     <Col md={8} className="text-center">
-                        <h3>Choose Your Plan</h3>
+                        <h3 className="text-primary">Choose Your Plan</h3>
                         <Row className="text-left">
                             <Col md={6}>
                                 <Panel header="Profesional Seller">
                                     <p>199$ / per year</p>
                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                     <p>
-                                        <Button>Start 3 day FREE trial</Button>
+                                        <Button bsStyle="success">Start 3 day FREE trial</Button>
                                     </p>
                                 </Panel>
                             </Col>
@@ -77,7 +71,7 @@ export default class Landing extends Component {
                                     <p>24$ / per year</p>
                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                     <p>
-                                        <Button>Start 3 day FREE trial</Button>
+                                        <Button bsStyle="success">Start 3 day FREE trial</Button>
                                     </p>
                                 </Panel>
                             </Col>
@@ -90,7 +84,7 @@ export default class Landing extends Component {
                                             <ControlLabel>Get alerted when we launch</ControlLabel>{'  '}
                                             <FormControl type="email" placeholder="Enter Your Email"/>
                                         </FormGroup>
-                                        <Button type="submit">
+                                        <Button bsStyle="success">
                                             Submit
                                         </Button>
                                     </Form>
@@ -100,10 +94,10 @@ export default class Landing extends Component {
                     </Col>
                     <Col md={2}></Col>
                 </Row>
-                <Row>
+                <Row className="testimonals">
                     <Col md={2}></Col>
                     <Col md={8} className="text-center">
-                        <h3>Testimonals</h3>
+                        <h3 className="text-primary">Testimonals</h3>
                         <Row>
                             <Col md={4}>
                                 <Panel>
@@ -138,10 +132,8 @@ export default class Landing extends Component {
                         </Row>
                     </Col>
                     <Col md={2}></Col>
-                </Row>
-                <Row>
                     <Col className="text-center" md={12}>
-                        <Button>Get Started</Button>
+                        <Button bsStyle="success">Get Started</Button>
                         <br/>
                         <br/>
                     </Col>
