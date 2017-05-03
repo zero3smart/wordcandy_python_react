@@ -5,7 +5,7 @@ $landing-bakcground: #f3f7fd;
     background-color: transparent;
     border-color: transparent;
     .text-success a, .text-success a:hover, .text-success a:focus {
-      color: $success;
+      color: $brand-success;
     }
     .text-secondary a, .text-secondary a:hover, .text-secondary a:focus {
       color: $secondary;
@@ -19,7 +19,7 @@ $landing-bakcground: #f3f7fd;
     background-size: cover;
   }
   .price {
-    background: url('/static/images/landing/background-price.png') no-repeat;
+    background: url('/static/images/landing/background-price.png') repeat;
     background-color: $landing-bakcground;
   }
   .testimonals {

@@ -49,7 +49,7 @@ export default class Landing extends Component {
                     <Col md={12} className="text-center">
                         <br/>
                         <br/>
-                        <Image src="/static/images/landing/example.png" />
+                        <Image src="/static/images/landing/example.png"/>
                     </Col>
                 </Row>
                 <Row className="price">
@@ -79,15 +79,13 @@ export default class Landing extends Component {
                         <Row className="text-left">
                             <Col md={12}>
                                 <Panel>
-                                    <Form inline>
-                                        <FormGroup>
-                                            <ControlLabel>Get alerted when we launch</ControlLabel>{'  '}
-                                            <FormControl type="email" placeholder="Enter Your Email"/>
-                                        </FormGroup>
-                                        <Button bsStyle="success">
-                                            Submit
-                                        </Button>
-                                    </Form>
+                                    <ul className="list-inline">
+                                        <li>Get alerted when we launch</li>
+                                        <li><FormControl style={{'width': '300px'}} type="email" placeholder="Enter Your Email"/></li>
+                                        <li>
+                                            <Button bsStyle="success">Submit</Button>
+                                        </li>
+                                    </ul>
                                 </Panel>
                             </Col>
                         </Row>
@@ -101,7 +99,7 @@ export default class Landing extends Component {
                         <Row>
                             <Col md={4}>
                                 <Panel>
-                                    <p><Image src="http://lorempixel.com/output/abstract-q-c-50-50-7.jpg" circle/></p>
+                                    <p><Image src="/static/images/landing/profile1.png" circle/></p>
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
@@ -111,7 +109,7 @@ export default class Landing extends Component {
                             </Col>
                             <Col md={4}>
                                 <Panel>
-                                    <p><Image src="http://lorempixel.com/output/abstract-q-c-50-50-7.jpg" circle/></p>
+                                    <p><Image src="/static/images/landing/profile2.png" circle/></p>
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
@@ -121,7 +119,7 @@ export default class Landing extends Component {
                             </Col>
                             <Col md={4}>
                                 <Panel>
-                                    <p><Image src="http://lorempixel.com/output/abstract-q-c-50-50-7.jpg" circle/></p>
+                                    <p><Image src="/static/images/landing/profile3.png" circle/></p>
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
