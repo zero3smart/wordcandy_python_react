@@ -1,14 +1,22 @@
 $landing-bakcground: #f3f7fd;
 
 .landing-page {
+  .btn {
+    padding: 6px 20px 6px 20px;
+  }
+  .panel-default {
+      border-color: transparent;
+  }
   .navbar-default {
     background-color: transparent;
     border-color: transparent;
     .text-success a, .text-success a:hover, .text-success a:focus {
       color: $brand-success;
+      font-weight: bold;
     }
     .text-secondary a, .text-secondary a:hover, .text-secondary a:focus {
       color: $secondary;
+      font-weight: bold;
     }
   }
   .main {
@@ -17,12 +25,130 @@ $landing-bakcground: #f3f7fd;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    .title {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    p {
+      color: #616277;
+    }
+    .video .img-responsive {
+      margin: 0 auto;
+    }
   }
   .price {
+    h3 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .wave {
+      height: 10px;
+      position: relative;
+    }
+    .wave::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-repeat: repeat;
+      height: 10px;
+      background-size: 20px 20px;
+      background-image: radial-gradient(circle at 10px 5px, transparent 12px, white 13px);
+    }
+    .wave::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-repeat: repeat;
+      height: 5px;
+      background-size: 20px 20px;
+      background-image: radial-gradient(circle at 10px 15px, white 12px, transparent 13px);
+    }
+
     background: url('/static/images/landing/background-price.png') repeat;
     background-color: $landing-bakcground;
+    .panel-heading {
+      font-size: 20px;
+      color: #3c434d;
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      font-weight: 100;
+    }
+    .tariff-description {
+      p {
+        color: #80909c;
+        font-size: 13px;
+      }
+      .value {
+        font-size: 48px;
+        color: #3c434d;
+        padding-left: 10px;
+      }
+      .dollar {
+        position: absolute;
+        margin-top: -7px;
+      }
+      .discount {
+        position: absolute;
+        right: 10px;
+      }
+    }
+    .subscribe {
+
+    }
   }
   .testimonals {
     background-color: $landing-bakcground;
+
+    h3 {
+      padding-top: 25px;
+      padding-bottom: 30px;
+    }
+
+    .panel-body {
+      b {
+        color: #3c434d;
+      }
+      .position {
+        color: #abbcc8;
+      }
+      .description {
+        color: #80909c;
+      }
+    }
+  }
+  .started {
+    background-color: $landing-bakcground;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    .btn-success {
+      font-size: 18px;
+    }
+    .btn {
+      border-radius: 25px;
+      padding: 10px 70px 10px 70px;
+    }
+  }
+  .footer {
+    padding-top: 10px;
+    background-color: #d5e0ec;
+
+    .navbar {
+      margin-bottom: 5px;
+    }
+
+    .navbar-default {
+      background-color: transparent;
+      border-color: transparent;
+    }
+    .copyright a {
+      color: #3c434d;
+      font-size: 13px;
+      font-weight: bold;
+    }
   }
 }

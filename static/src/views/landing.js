@@ -39,17 +39,19 @@ export default class Landing extends Component {
                         </Nav>
                     </Navbar>
                     <Col md={12} className="text-center">
-                        <h1 className="text-primary">MEET CANDY WORDS TO MERCH RIGHT</h1>
+                        <h1 className="title">SWEET KEYWORDS FOR ECOMMERCE</h1>
                     </Col>
-                    <Col md={3}></Col>
-                    <Col md={6}>
-                        <p class="text-center">WORDCANDY.IO created to help sellers present their products as much effective and save time. We aims to power your business with valuable tool for every day use. Upgrade your selling companies with magic keywords that works.</p>
+                    <Col md={2}></Col>
+                    <Col md={8} className="text-center">
+                        <p>Creativity is the crux of the unwitting. You got great product, but can’t make it rain with your keywords?</p>
+                        <p>Organization, imagination, strategy….it’s overwhelming. Not anymore. Welcome to your salvation.</p>
+                        <p>A complete eCommerce keyword dashboard for your Merch designs and beyond.</p>
+                        <p>Strategy and creativity all rolled into one solution to help you 10X your sales!</p>
                     </Col>
-                    <Col md={3}></Col>
-                    <Col md={12} className="text-center">
+                    <Col md={2}></Col>
+                    <Col md={12} className="video">
                         <br/>
-                        <br/>
-                        <Image src="/static/images/landing/example.png"/>
+                        <Image src="/static/images/landing/example.png" responsive width={'500px'} height={'400px'} />
                     </Col>
                 </Row>
                 <Row className="price">
@@ -58,8 +60,9 @@ export default class Landing extends Component {
                         <h3 className="text-primary">Choose Your Plan</h3>
                         <Row className="text-left">
                             <Col md={6}>
-                                <Panel header="Profesional Seller">
-                                    <p>199$ / per year</p>
+                                <div className="wave"></div>
+                                <Panel header="Profesional Seller" className="tariff-description">
+                                    <p><span className="dollar">$</span> <span className="value">199</span> / per year <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png" /></p>
                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                     <p>
                                         <Button bsStyle="success">Start 3 day FREE trial</Button>
@@ -67,8 +70,9 @@ export default class Landing extends Component {
                                 </Panel>
                             </Col>
                             <Col md={6}>
-                                <Panel header="Beginner">
-                                    <p>24$ / per year</p>
+                                <div className="wave"></div>
+                                <Panel header="Beginner" className="tariff-description">
+                                    <p><span className="dollar">$</span> <span className="value">24</span> / per month</p>
                                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                     <p>
                                         <Button bsStyle="success">Start 3 day FREE trial</Button>
@@ -76,16 +80,19 @@ export default class Landing extends Component {
                                 </Panel>
                             </Col>
                         </Row>
-                        <Row className="text-left">
+                        <Row className="text-left subscribe">
                             <Col md={12}>
-                                <Panel>
-                                    <ul className="list-inline">
-                                        <li>Get alerted when we launch</li>
-                                        <li><FormControl style={{'width': '300px'}} type="email" placeholder="Enter Your Email"/></li>
-                                        <li>
-                                            <Button bsStyle="success">Submit</Button>
-                                        </li>
-                                    </ul>
+                                <Panel header="Get alerted when we launch">
+                                  <Form inline>
+                                    <FormGroup style={{'width': '90%', 'padding-right': '10px'}} >
+                                      <FormControl style={{'width': '100%'}} type="text" type="email" placeholder="Enter Your Email" />
+                                    </FormGroup>
+                                    <FormGroup style={{'width': '10%'}}>
+                                      <Button type="submit" bsStyle="success">
+                                        Submit
+                                      </Button>
+                                    </FormGroup>
+                                  </Form>
                                 </Panel>
                             </Col>
                         </Row>
@@ -103,8 +110,8 @@ export default class Landing extends Component {
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
-                                    <p>Sales Manager</p>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">Sales Manager</p>
+                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 </Panel>
                             </Col>
                             <Col md={4}>
@@ -113,8 +120,8 @@ export default class Landing extends Component {
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
-                                    <p>Sales Manager</p>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">Sales Manager</p>
+                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 </Panel>
                             </Col>
                             <Col md={4}>
@@ -123,19 +130,31 @@ export default class Landing extends Component {
                                     <p>
                                         <b>Iren Adler</b>
                                     </p>
-                                    <p>Sales Manager</p>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">Sales Manager</p>
+                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                                 </Panel>
                             </Col>
                         </Row>
                     </Col>
                     <Col md={2}></Col>
+                  </Row>
+                  <Row className="started">
                     <Col className="text-center" md={12}>
                         <Button bsStyle="success">Get Started</Button>
-                        <br/>
-                        <br/>
                     </Col>
-                </Row>
+                  </Row>
+                  <Row className="footer">
+                    <Navbar>
+                        <Navbar.Header>
+                            <Navbar.Brand>
+                                <a href="#">WORDCANDY.IO</a>
+                            </Navbar.Brand>
+                        </Navbar.Header>
+                        <Nav pullRight>
+                            <NavItem className="copyright">&copy; 2017 WORDCANDY.IO</NavItem>
+                        </Nav>
+                    </Navbar>
+                  </Row>
             </Grid>
         );
     }

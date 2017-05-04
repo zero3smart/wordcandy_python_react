@@ -45,16 +45,16 @@ export default class Main extends Component {
                     </Navbar>
                 </Row>
                 <Row>
-                    <Col md={12} className="text-center">
-                        <h1 className="text-primary">SWEET KEYWORDS FOR ECOMERCE</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md={3}></Col>
-                    <Col md={6}>
-                        <p class="text-center">Creativity is the crux of the unwitting. You got great product, but can’t make it rain with your keywords? Organization, imagination, strategy….it’s overwhelming. Not anymore. Welcome to your salvation. A complete eCommerce keyword dashboard for your Merch designs and beyond. Strategy and creativity all rolled into one solution to help you 10X your sales!</p>
-                    </Col>
-                    <Col md={3}></Col>
+                  <Col md={12} className="text-center">
+                    <h1 className="title">SWEET KEYWORDS FOR ECOMMERCE</h1>
+                  </Col>
+                  <Col md={2}></Col>
+                  <Col md={8} className="text-center">
+                      <p>Creativity is the crux of the unwitting. You got great product, but can’t make it rain with your keywords?</p>
+                      <p>Organization, imagination, strategy….it’s overwhelming. Not anymore. Welcome to your salvation.</p>
+                      <p>A complete eCommerce keyword dashboard for your Merch designs and beyond.</p>
+                      <p>Strategy and creativity all rolled into one solution to help you 10X your sales!</p>
+                  </Col>
                 </Row>
                 <Row>
                     <Col md={4}></Col>

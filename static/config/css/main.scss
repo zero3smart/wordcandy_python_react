@@ -12,3 +12,16 @@
     width: 100%;
     background: #999;
 }
+
+h1, h2, h3, h4, h5 {
+  color: $primary;
+  font-weight: 100;
+}
+
+p {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 20px;
+}
