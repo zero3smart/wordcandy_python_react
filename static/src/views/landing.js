@@ -11,7 +11,9 @@ import {
     NavItem,
     Nav,
     Image,
-    Panel
+    Panel,
+    Tabs,
+    Tab
 } from 'react-bootstrap';
 
 import React, {Component} from 'react';
@@ -51,7 +53,8 @@ export default class Landing extends Component {
                     <Col md={2}></Col>
                     <Col md={12} className="video">
                         <br/>
-                        <Image src="/static/images/landing/example.png" responsive width={'500px'} height={'400px'} />
+                        <Image src="/static/images/landing/example.png" responsive width={'600px'} height={'460px'}/>
+                        <br/>
                     </Col>
                 </Row>
                 <Row className="price">
@@ -61,38 +64,90 @@ export default class Landing extends Component {
                         <Row className="text-left">
                             <Col md={6}>
                                 <div className="wave"></div>
-                                <Panel header="Profesional Seller" className="tariff-description">
-                                    <p><span className="dollar">$</span> <span className="value">199</span> / per year <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png" /></p>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                    <p>
-                                        <Button bsStyle="success">Start 3 day FREE trial</Button>
-                                    </p>
+                                <Panel className="tariff-description">
+                                    <Row className="tariff-header">
+                                        <Col md={12}>
+                                            <ul className="list-inline">
+                                                <li>
+                                                    <span>Profesional Seller</span>
+                                                </li>
+                                                <li className="period">
+                                                    <Tabs defaultActiveKey={2} animation={false}>
+                                                        <Tab eventKey={1} title="month"></Tab>
+                                                        <Tab eventKey={2} title="year"></Tab>
+                                                    </Tabs>
+                                                </li>
+                                            </ul>
+                                        </Col>
+                                    </Row>
+                                    <Row className="tariff-body">
+                                        <Col md={12}>
+                                            <p>
+                                                <span className="dollar">$</span>
+                                                <span className="value">199</span>
+                                                / per year
+                                                <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
+                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                            <p>
+                                                <Button disabled bsStyle="success">Start 3 day FREE trial</Button>
+                                            </p>
+                                        </Col>
+                                    </Row>
                                 </Panel>
                             </Col>
                             <Col md={6}>
                                 <div className="wave"></div>
-                                <Panel header="Beginner" className="tariff-description">
-                                    <p><span className="dollar">$</span> <span className="value">24</span> / per month</p>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                    <p>
-                                        <Button bsStyle="success">Start 3 day FREE trial</Button>
-                                    </p>
+                                <Panel className="tariff-description">
+                                  <Row className="tariff-header">
+                                      <Col md={12}>
+                                          <ul className="list-inline">
+                                              <li>
+                                                  <span>Beginner</span>
+                                              </li>
+                                              <li className="period">
+                                                  <Tabs defaultActiveKey={1} animation={false}>
+                                                      <Tab eventKey={1} title="month"></Tab>
+                                                      <Tab eventKey={2} title="year"></Tab>
+                                                  </Tabs>
+                                              </li>
+                                          </ul>
+                                      </Col>
+                                  </Row>
+                                    <Row className="tariff-body tariff-body-background">
+                                        <Col md={12}>
+                                            <p>
+                                                <span className="dollar">$</span>
+                                                <span className="value">24</span>
+                                                / per month</p>
+                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                            <p>
+                                                <Button disabled bsStyle="success">Start 3 day FREE trial</Button>
+                                            </p>
+                                        </Col>
+                                    </Row>
                                 </Panel>
                             </Col>
                         </Row>
                         <Row className="text-left subscribe">
                             <Col md={12}>
                                 <Panel header="Get alerted when we launch">
-                                  <Form inline>
-                                    <FormGroup style={{'width': '90%', 'padding-right': '10px'}} >
-                                      <FormControl style={{'width': '100%'}} type="text" type="email" placeholder="Enter Your Email" />
-                                    </FormGroup>
-                                    <FormGroup style={{'width': '10%'}}>
-                                      <Button type="submit" bsStyle="success">
-                                        Submit
-                                      </Button>
-                                    </FormGroup>
-                                  </Form>
+                                    <Form inline>
+                                        <FormGroup style={{
+                                            'width': '90%',
+                                            'padding-right': '10px'
+                                        }}>
+                                            <FormControl style={{
+                                                'width': '100%'
+                                            }} type="text" type="email" placeholder="Enter Your Email"/>
+                                        </FormGroup>
+                                        <FormGroup style={{
+                                            'width': '10%'
+                                        }}>
+                                            <Button type="submit" bsStyle="success">
+                                                Submit
+                                            </Button>
+                                        </FormGroup>
+                                    </Form>
                                 </Panel>
                             </Col>
                         </Row>
@@ -137,13 +192,13 @@ export default class Landing extends Component {
                         </Row>
                     </Col>
                     <Col md={2}></Col>
-                  </Row>
-                  <Row className="started">
+                </Row>
+                <Row className="started">
                     <Col className="text-center" md={12}>
                         <Button bsStyle="success">Get Started</Button>
                     </Col>
-                  </Row>
-                  <Row className="footer">
+                </Row>
+                <Row className="footer">
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
@@ -154,7 +209,7 @@ export default class Landing extends Component {
                             <NavItem className="copyright">&copy; 2017 WORDCANDY.IO</NavItem>
                         </Nav>
                     </Navbar>
-                  </Row>
+                </Row>
             </Grid>
         );
     }

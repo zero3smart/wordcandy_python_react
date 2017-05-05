@@ -25,3 +25,9 @@ p {
   font-variant: normal;
   line-height: 20px;
 }
+
+.btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover  {
+  background-color: #fff;
+  color: $brand-success;
+  opacity: 1;
+}
