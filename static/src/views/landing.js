@@ -60,7 +60,7 @@ export default class Landing extends Component {
                 <Row className="price">
                     <Col md={2}></Col>
                     <Col md={8} className="text-center">
-                        <h3 className="text-primary">Choose Your Plan</h3>
+                        <h3 className="text-primary">Choose Your Plan. Get Sweeter Keywords. Sell more.</h3>
                         <Row className="text-left">
                             <Col md={6}>
                                 <div className="wave"></div>
@@ -84,12 +84,12 @@ export default class Landing extends Component {
                                         <Col md={12}>
                                             <p>
                                                 <span className="dollar">$</span>
-                                                <span className="value">199</span>
+                                                <span className="value">690</span>
                                                 / per year
                                                 <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                                <Button disabled bsStyle="success">Start 3 day FREE trial</Button>
+                                                <Button bsStyle="success">Start 3 day FREE trial</Button>
                                             </p>
                                         </Col>
                                     </Row>
@@ -105,7 +105,7 @@ export default class Landing extends Component {
                                                   <span>Beginner</span>
                                               </li>
                                               <li className="period">
-                                                  <Tabs defaultActiveKey={1} animation={false}>
+                                                  <Tabs disabled defaultActiveKey={1} animation={false}>
                                                       <Tab eventKey={1} title="month"></Tab>
                                                       <Tab eventKey={2} title="year"></Tab>
                                                   </Tabs>
@@ -117,11 +117,11 @@ export default class Landing extends Component {
                                         <Col md={12}>
                                             <p>
                                                 <span className="dollar">$</span>
-                                                <span className="value">24</span>
+                                                <span className="value">29</span>
                                                 / per month</p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                                <Button disabled bsStyle="success">Start 3 day FREE trial</Button>
+                                                <Button bsStyle="success">Start 3 day FREE trial</Button>
                                             </p>
                                         </Col>
                                     </Row>

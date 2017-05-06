@@ -1,8 +1,83 @@
 .dashboard-page {
-    background-color: #e8eef2;
+    color: #56576c;
+    background-color: #56576c;
+
+    .scroll-block {
+        overflow-y: scroll;
+        height: 100px;
+        margin-top: -10px;
+    }
+
+    [class*="col-"] {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .panel {
+        margin-bottom: 10px;
+    }
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-variant: normal;
 
     input {
-        background-color: #edf1f2;
+        background-color: #f5f6fc;
+        border-color: #dbd9ed;
+    }
+
+    .btn-primary {
+        background-color: #839ff9;
+        border-color: #839ff9;
+    }
+
+    .btn-default {
+        border-color: #dbdaed;
+        color: #56576c;
+    }
+
+    .btn-default:focus,
+    .btn-default:hover {
+        background-color: #dbdaed;
+        border-color: #dbdaed;
+        color: #56576c;
+    }
+
+    .btn.disabled,
+    .btn[disabled],
+    fieldset[disabled] .btn {
+        background-color: #dbdaed;
+        border-color: #dbdaed;
+        color: #56576c;
+    }
+
+    .templates {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .templates-list {
+        padding-left: 0;
+        padding-right: 0;
+
+        .nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:focus,
+        .nav-tabs > li.active > a:hover {
+            border: none;
+            border-bottom: 2px solid #000;
+            color: #000;
+        }
+
+        .nav-tabs > li > a {
+            color: #56576c;
+        }
+
+        .nav-tabs > li > a:focus,
+        .nav-tabs > li > a:hover {
+            background-color: #fff;
+            border: none;
+            border-bottom: 2px solid #000;
+            color: #000;
+        }
     }
 
     .panel-default {
@@ -27,11 +102,6 @@
             font-size: 20px;
         }
     }
-}
-
-.fixed-panel {
-    height: 50px;
-    overflow-y: scroll;
 }
 
 #footer {

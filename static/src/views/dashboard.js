@@ -21,7 +21,6 @@ import axios from 'axios';
 import Loader from 'react-loader';
 import format from 'string-format';
 
-
 export default class Dashboard extends Component {
 
     constructor(props) {
@@ -33,7 +32,7 @@ export default class Dashboard extends Component {
             stats: [],
             loaded: true,
             thumbnail: '/static/images/dashboard/photo.png',
-            url: 'https://wordcandy.herokuapp.com'
+            url: 'http://0.0.0.0:8000'
         };
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
@@ -87,37 +86,39 @@ export default class Dashboard extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">WORDCANDY.IO</a> <span> - KEYWORD APP</span>
+                            <a href="#">WORDCANDY.IO</a>
+                            <span>
+                                - KEYWORD APP</span>
                         </Navbar.Brand>
                     </Navbar.Header>
                 </Navbar>
                 <Row>
                     <Col md={3}>
                         <Panel className="text-center" style={{
-                            'paddingTop': '22px'
+                            height: 320
                         }}>
-                            <p style={{
-                                'paddingBottom': '22px'
-                            }}>
-                                <Image src={this.state.thumbnail} width={171} height={180}/>
+                            <p>
+                                <Image src={this.state.thumbnail} width={250} height={250}/>
                             </p>
                             <Dropzone onDrop={this.onUploadImage} multiple={false} rejectStyle>
-                                <Button bsStyle="success" block>Upload image (.jpg / .png)</Button>
+                                <Button bsStyle="primary" block>Upload image (.jpg / .png)</Button>
                             </Dropzone>
                         </Panel>
                     </Col>
                     <Col md={6}>
 
-                        <Panel header="What keywords descript this t-shirt?">
+                        <Panel header="What keywords descript this t-shirt?" style={{
+                            height: 155
+                        }}>
                             <Form inline>
                                 <Row>
-                                    <Col md={9}>
+                                    <Col md={10}>
                                         <FormGroup controlId="formControlsTextarea">
                                             <TagsInput value={this.state.tags} onChange={:: this.handleChangeTags}/>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={3}>
-                                        <Button bsStyle="success" onClick={this.calculate}>
+                                    <Col md={2}>
+                                        <Button bsStyle="primary" onClick={this.calculate}>
                                             Calculate
                                         </Button>
                                     </Col>
@@ -125,71 +126,93 @@ export default class Dashboard extends Component {
                             </Form>
                         </Panel>
 
-                        <Loader loaded={this.state.loaded}>
-                            <Panel header="Amazon keywords auto suggest">
+                        <Panel header="Amazon keywords auto suggest" style={{
+                            height: 155
+                        }}>
+                            <Loader loaded={this.state.loaded}>
                                 {this.state.stats.length == 0
                                     ? <div>Empty</div>
                                     : null}
-                                <ul className="fixed-panel">
+                                <Row className="scroll-block">
                                     {this.state.stats.map(function(item, i) {
-                                        return <li>{item.name}
-                                            - {item.volume}</li>
+                                        return <Col md={4}>{i}. {item.name}
+                                            - {item.volume}</Col>
                                     }, this)}
-                                </ul>
-                            </Panel>
-                        </Loader>
+                                </Row>
+                            </Loader>
+                        </Panel>
 
                     </Col>
                     <Col md={3}>
-                        <Panel header="Analytics">
-                            <p className="text-center">
-                                <Image src={'/static/images/dashboard/analytics.png'} width={183} height={183}/>
+                        <Panel header="Analytics" style={{
+                            height: 320
+                        }}>
+                            <p className="text-center" style={{
+                                paddingBottom: 30,
+                                paddingTop: 30
+                            }}>
+                                <Image src={'/static/images/dashboard/analytics.png'} height={'150px'} width={'150px'}/>
                             </p>
-                            <Button bsStyle="success" disabled block>View Analytics</Button>
+                            <Button disabled block>View Analytics</Button>
                         </Panel>
                     </Col>
                 </Row>
-                <Row>
+                <Row style={{
+                    paddingBottom: 10
+                }}>
                     <Col md={9}>
                         <Panel style={{
-                            'paddingBottom': '50px'
-                            }}>
-                            <Nav bsStyle="tabs" activeKey="1">
-                                <NavItem eventKey="1">Amazon</NavItem>
-                                <NavItem eventKey="2">TeePublic</NavItem>
-                                <NavItem eventKey="3">TeeSpring</NavItem>
-                                <NavItem eventKey="4">RedBuble</NavItem>
-                            </Nav>
-                            <h5>Temapltes</h5>
-                            <ul className="list-inline">
-                                <li>
-                                    <Button disabled>None</Button>
-                                </li>
-                                <li>
-                                    <Button>Summertime T-shirt</Button>
-                                </li>
-                                <li>
-                                    <Button>Holiday T-shirt</Button>
-                                </li>
-                                <li>
-                                    <Button>Tropical T-shirt</Button>
-                                </li>
-                            </ul>
+                            height: 350
+                        }}>
+                            <Row>
+                                <Col md={12} className="templates-list">
+                                    <Nav bsStyle="tabs" activeKey="1">
+                                        <NavItem eventKey="1">Amazon</NavItem>
+                                        <NavItem eventKey="2">TeePublic</NavItem>
+                                        <NavItem eventKey="3">TeeSpring</NavItem>
+                                        <NavItem eventKey="4">RedBuble</NavItem>
+                                    </Nav>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                    <div className="templates">
+                                        <b>Temapltes</b>
+                                    </div>
+                                    <ul className="list-inline">
+                                        <li>
+                                            <Button disabled>None</Button>
+                                        </li>
+                                        <li>
+                                            <Button>Summertime T-shirt</Button>
+                                        </li>
+                                        <li>
+                                            <Button>Holiday T-shirt</Button>
+                                        </li>
+                                        <li>
+                                            <Button>Tropical T-shirt</Button>
+                                        </li>
+                                    </ul>
+                                </Col>
+                            </Row>
                             <br/>
                             <Row>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <FormControl type="text" placeholder="Enter prodcut title"/>
+                                        <ControlLabel>Title</ControlLabel>
+                                        <FormControl type="text" placeholder="Title - 4 to 8 words is best"/>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
-                                        <FormControl type="text" placeholder="Add description"/>
+                                        <ControlLabel>Description</ControlLabel>
+                                        <FormControl type="text" placeholder="Dref description of work to get your audience all excited"/>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
-                                        <FormControl type="text" placeholder="Add description"/>
+                                        <ControlLabel>Tags</ControlLabel>
+                                        <FormControl type="text" placeholder="Use, comas to-separate-tags"/>
                                     </FormGroup>
                                 </Col>
                             </Row>
@@ -197,32 +220,38 @@ export default class Dashboard extends Component {
 
                     </Col>
                     <Col md={3}>
-                        <Loader loaded={this.state.loaded}>
-                            <Panel header="Synonyms">
+                        <Panel header="Synonyms" style={{
+                            height: 170
+                        }}>
+                            <Loader loaded={this.state.loaded}>
                                 {this.state.synonyms.length == 0
                                     ? <div>Empty</div>
                                     : null}
-                                <ul className="fixed-panel">
+                                <Row className="scroll-block">
                                     {this.state.synonyms.map(function(item, i) {
-                                        return <li>{item}</li>
+                                        return <Col md={6}>{item}</Col>
                                     }, this)}
 
-                                </ul>
-                            </Panel>
-                        </Loader>
-                        <Loader loaded={this.state.loaded}>
-                            <Panel header="Antonyms">
+                                </Row>
+                            </Loader>
+                        </Panel>
+
+                        <Panel header="Antonyms" style={{
+                            height: 170
+                        }}>
+                            <Loader loaded={this.state.loaded}>
                                 {this.state.antonyms.length == 0
                                     ? <div>Empty</div>
                                     : null}
-                                <ul className="fixed-panel">
+                                <Row className="scroll-block">
                                     {this.state.antonyms.map(function(item, i) {
-                                        return <li>{item}</li>
+                                        return <Col md={6}>{item}</Col>
                                     }, this)}
 
-                                </ul>
-                            </Panel>
-                        </Loader>
+                                </Row>
+                            </Loader>
+                        </Panel>
+
                     </Col>
                 </Row>
                 <hr/>

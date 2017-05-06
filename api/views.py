@@ -28,7 +28,6 @@ class SynonymsView(APIView):
                 "X-Mashape-Key": settings.MASHAPE,
                 "Accept": "application/json",
             })
-            print result.json()
             if 'synonyms' in result.json():
                 data['synonyms'] += result.json()['synonyms']
         return Response(data)
@@ -49,7 +48,6 @@ class AntonymsView(APIView):
                 "X-Mashape-Key": settings.MASHAPE,
                 "Accept": "application/json",
             })
-            print result.json()
             if 'antonyms' in result.json():
                 data['antonyms'] += result.json()['antonyms']
         return Response(data)
@@ -80,11 +78,15 @@ class KeywordToolView(APIView):
             data = requests.get('http://api.keywordtool.io/v2/search/suggestions/amazon', params=payload)
             for item in data.json()['results']:
                 for sub_item in data.json()['results'][item]:
-                    if sub_item['volume']:
-                        result['keywords'].append({
-                            'name': sub_item['string'],
-                            'volume': sub_item['volume']
-                        })
+                    try:
+                        if sub_item['volume']:
+                            result['keywords'].append({
+                                'name': sub_item['string'],
+                                'volume': sub_item['volume']
+                            })
+                    except Exception as e:
+                        pass
+
         return Response(result)
 
 
