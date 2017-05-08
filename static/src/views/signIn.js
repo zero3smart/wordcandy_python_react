@@ -36,11 +36,11 @@ export default class SignIn extends Component {
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="#">WORDCANDY.IO</a>
+                                <Link to="/">WORDCANDY.IO</Link>
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav pullRight>
-                            <NavItem href="#" className="text-success">Create account</NavItem>
+                            <NavItem className="text-success"><Link to="/sign-up">Create account</Link></NavItem>
                         </Nav>
                     </Navbar>
                 </Row>

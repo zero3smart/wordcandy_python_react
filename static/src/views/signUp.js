@@ -36,11 +36,11 @@ export default class SignUp extends Component {
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="#">WORDCANDY.IO</a>
+                                <Link to="/">WORDCANDY.IO</Link>
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav pullRight>
-                            <NavItem href="#" className="text-success">Login</NavItem>
+                            <NavItem className="text-success"><Link to="/sign-in">Login</Link></NavItem>
                         </Nav>
                     </Navbar>
                 </Row>
@@ -83,9 +83,9 @@ export default class SignUp extends Component {
 
                                 <FormGroup>
                                     <Col md={12} className="text-center">
-                                        <Button block bsStyle="success" onClick={this.signIn}>
+                                        <Link to="/dashboard"><Button block bsStyle="success" onClick={this.signIn}>
                                             Create account
-                                        </Button>
+                                        </Button></Link>
                                     </Col>
                                 </FormGroup>
                             </Form>

@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 
 from django.http import HttpResponse
 from django.conf import settings
@@ -7,7 +8,8 @@ from django.conf import settings
 import requests
 from datetime import datetime
 
-from .serializers import SynonymsSerializer, AntonymsSerializer
+from .serializers import SynonymsSerializer, AntonymsSerializer, ShopSerializer, TemplateSerializer
+from .models import Shop
 
 from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl import Workbook
@@ -104,3 +106,16 @@ class ExcelView(APIView):
             filename + '"'
         response.write(save_virtual_workbook(wb))
         return response
+
+
+class ShopList(GenericAPIView):
+    serializer_class = ShopSerializer
+
+    def get(self, request, format=None):
+        """
+        Return list of shops
+        """
+        shops = Shop.objects.all()
+        print shops
+        serializer = self.serializer_class(shops, many=True)
+        return Response(serializer.data)

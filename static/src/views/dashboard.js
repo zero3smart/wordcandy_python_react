@@ -30,9 +30,10 @@ export default class Dashboard extends Component {
             synonyms: [],
             antonyms: [],
             stats: [],
+            shops: [],
             loaded: true,
             thumbnail: '/static/images/dashboard/photo.png',
-            url: 'http://0.0.0.0:8000'
+            url: 'https://wordcandy.herokuapp.com'
         };
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
@@ -42,6 +43,18 @@ export default class Dashboard extends Component {
     handleChangeTags(tags) {
         this.setState({tags})
     }
+
+    componentDidMount() {
+      var _ = this;
+      axios.get(format('{0}/v1/dashboard/templates/', this.state.url)).then(function(response) {
+        _.setState({
+          shops: response.data
+        });
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
+
 
     onUploadImage(files) {
         this.setState({thumbnail: files[0]['preview']
@@ -166,11 +179,10 @@ export default class Dashboard extends Component {
                         }}>
                             <Row>
                                 <Col md={12} className="templates-list">
-                                    <Nav bsStyle="tabs" activeKey="1">
-                                        <NavItem eventKey="1">Amazon</NavItem>
-                                        <NavItem eventKey="2">TeePublic</NavItem>
-                                        <NavItem eventKey="3">TeeSpring</NavItem>
-                                        <NavItem eventKey="4">RedBuble</NavItem>
+                                    <Nav bsStyle="tabs" activeKey="Amazon">
+                                      {this.state.shops.map(function(item, i) {
+                                          return <NavItem eventKey="{item.name}">{item.name}</NavItem>
+                                      }, this)}
                                     </Nav>
                                 </Col>
                             </Row>

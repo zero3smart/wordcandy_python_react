@@ -16,6 +16,7 @@ import {
     Tab
 } from 'react-bootstrap';
 
+import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 
 export default class Landing extends Component {
@@ -32,12 +33,12 @@ export default class Landing extends Component {
                     <Navbar>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="#">WORDCANDY.IO</a>
+                                <Link to="/">WORDCANDY.IO</Link>
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav pullRight>
-                            <NavItem href="#" className="text-secondary">Get Started</NavItem>
-                            <NavItem href="#" className="text-success">Login</NavItem>
+                            <NavItem className="text-secondary"><Link to="/sign-up">Get Started</Link></NavItem>
+                            <NavItem className="text-success"><Link to="/sign-in">Login</Link></NavItem>
                         </Nav>
                     </Navbar>
                     <Col md={12} className="text-center">
@@ -89,7 +90,7 @@ export default class Landing extends Component {
                                                 <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                                <Button bsStyle="success">Start 3 day FREE trial</Button>
+                                              <Link to="/sign-up"><Button bsStyle="success">Start 3 day FREE trial</Button></Link>
                                             </p>
                                         </Col>
                                     </Row>
@@ -121,7 +122,7 @@ export default class Landing extends Component {
                                                 / per month</p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                                <Button bsStyle="success">Start 3 day FREE trial</Button>
+                                                <Link to="/sign-up"><Button bsStyle="success">Start 3 day FREE trial</Button></Link>
                                             </p>
                                         </Col>
                                     </Row>
@@ -195,7 +196,7 @@ export default class Landing extends Component {
                 </Row>
                 <Row className="started">
                     <Col className="text-center" md={12}>
-                        <Button bsStyle="success">Get Started</Button>
+                        <Link to="/sign-up"><Button bsStyle="success">Get Started</Button></Link>
                     </Col>
                 </Row>
                 <Row className="footer">

@@ -16,3 +16,7 @@ p {
   color: $brand-success;
   opacity: 1;
 }
+
+a, a:hover, a:focus {
+  text-decoration: none;
+}
