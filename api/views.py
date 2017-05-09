@@ -116,6 +116,5 @@ class ShopList(GenericAPIView):
         Return list of shops
         """
         shops = Shop.objects.all()
-        print shops
         serializer = self.serializer_class(shops, many=True)
         return Response(serializer.data)

@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Template, Shop
 
 class TemplateAdmin(admin.ModelAdmin):
-    list_display = ['title', 'shop']
+    list_display = ['name', 'shop']
     date_hierarchy = 'created_date'
 
 

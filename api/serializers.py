@@ -18,14 +18,14 @@ class TemplateSerializer(serializers.ModelSerializer):
 
 
 class ShopSerializer(serializers.ModelSerializer):
-    teamplates = serializers.SerializerMethodField('is_teamplates')
+    templates = serializers.SerializerMethodField('is_templates')
 
     class Meta:
         model = Shop
         exclude = ()
-        fields = ('id', 'teamplates', 'name')
+        fields = ('id', 'templates', 'name')
 
-    def is_teamplates(self, obj):
-        templates = Template.objects.filter(shop=obj)
+    def is_templates(self, obj):
+        templates = Template.objects.filter(shop=obj).order_by('order')
         serializer = TemplateSerializer(templates, many=True)
         return serializer.data

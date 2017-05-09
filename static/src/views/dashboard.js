@@ -31,6 +31,10 @@ export default class Dashboard extends Component {
             antonyms: [],
             stats: [],
             shops: [],
+            templates: [],
+            template: [],
+            activeTemplate: 0,
+            activeShop: 0,
             loaded: true,
             thumbnail: '/static/images/dashboard/photo.png',
             url: 'https://wordcandy.herokuapp.com'
@@ -38,6 +42,69 @@ export default class Dashboard extends Component {
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
         this.exportData = this.exportData.bind(this);
+        this.handleShop = this.handleShop.bind(this);
+        this.handleTemplate = this.handleTemplate.bind(this);
+        this.reset = this.reset.bind(this);
+        this.addWord = this.addWord.bind(this);
+        this.handleTitle = this.handleTitle.bind(this);
+        this.handleSecondDescription = this.handleSecondDescription.bind(this);
+        this.handleFirstDescription = this.handleFirstDescription.bind(this);
+    }
+
+    reset() {
+      this.setState({
+          tags: [],
+          synonyms: [],
+          antonyms: [],
+          stats: [],
+          thumbnail: '/static/images/dashboard/photo.png',
+      });
+    }
+
+    addWord(event) {
+      var template = this.state.template;
+      template.title = template.title.replace('{}', event.target.getAttribute('data-word'));
+      template.first_description = template.first_description.replace('{}', event.target.getAttribute('data-word'));
+      template.second_description = template.second_description.replace('{}', event.target.getAttribute('data-word'));
+
+      this.setState({
+        template: template
+      });
+    }
+
+    handleTitle(event) {
+      var template = this.state.template;
+      template.title = event.target.value
+      this.setState({
+        template: template
+      });
+    }
+
+    handleSecondDescription(event) {
+      var template = this.state.template;
+      template.second_description = event.target.value
+      this.setState({
+        template: template
+      });
+    }
+
+    handleFirstDescription(event) {
+      var template = this.state.template;
+      template.first_description = event.target.value
+      this.setState({
+        template: template
+      });
+    }
+
+    handleShop(index) {
+        this.setState({activeShop: index, templates: this.state.shops[index].templates, activeTemplate: 0, template: this.state.shops[index].templates[0]})
+    }
+
+    handleTemplate(event) {
+        this.setState({
+            activeTemplate: event.target.getAttribute('data-id'),
+            template: this.state.templates[event.target.getAttribute('data-id')]
+        });
     }
 
     handleChangeTags(tags) {
@@ -45,19 +112,17 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
-      var _ = this;
-      axios.get(format('{0}/v1/dashboard/templates/', this.state.url)).then(function(response) {
-        _.setState({
-          shops: response.data
+        var _ = this;
+        axios.get(format('{0}/v1/dashboard/templates/', this.state.url)).then(function(response) {
+            _.setState({shops: response.data, templates: response.data[0].templates, template: response.data[0].templates[0]});
+        }).catch(function(error) {
+            console.log(error);
         });
-      }).catch(function(error) {
-        console.log(error);
-      });
     }
 
-
     onUploadImage(files) {
-        this.setState({thumbnail: files[0]['preview']
+        this.setState({
+          thumbnail: files[0]['preview']
         });
     }
 
@@ -114,7 +179,9 @@ export default class Dashboard extends Component {
                                 <Image src={this.state.thumbnail} width={250} height={250}/>
                             </p>
                             <Dropzone onDrop={this.onUploadImage} multiple={false} rejectStyle>
-                                <Button bsStyle="primary" block>Upload image (.jpg / .png)</Button>
+                                <Button bsStyle="primary" block>
+                                    <i className="icon ion-arrow-up-c"></i>
+                                    Upload image (.jpg / .png)</Button>
                             </Dropzone>
                         </Panel>
                     </Col>
@@ -125,14 +192,25 @@ export default class Dashboard extends Component {
                         }}>
                             <Form inline>
                                 <Row>
-                                    <Col md={10}>
+                                    <Col md={9}>
                                         <FormGroup controlId="formControlsTextarea">
                                             <TagsInput value={this.state.tags} onChange={:: this.handleChangeTags}/>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={2}>
-                                        <Button bsStyle="primary" onClick={this.calculate}>
+                                    <Col md={3} className="text-center">
+                                        <Button bsStyle="primary" style={{
+                                            width: '100px',
+                                            marginBottom: '10px'
+                                        }} onClick={this.calculate}>
+                                            <i className="icon ion-calculator"></i>
                                             Calculate
+                                        </Button>
+
+                                        <Button bsStyle="primary" style={{
+                                            width: '100px'
+                                        }} onClick={this.reset}>
+                                            <i className="icon ion-android-refresh"></i>
+                                            Reset
                                         </Button>
                                     </Col>
                                 </Row>
@@ -148,8 +226,10 @@ export default class Dashboard extends Component {
                                     : null}
                                 <Row className="scroll-block">
                                     {this.state.stats.map(function(item, i) {
-                                        return <Col md={4}>{i}. {item.name}
-                                            - {item.volume}</Col>
+                                        return <Col md={4}>{i + 1}. {item.name}
+                                            - {item.volume}{' '}
+                                            <i onClick={this.addWord} style={{ cursor: 'cursor' }} data-word={item.name} className="icon ion-android-add-circle"></i>
+                                        </Col>
                                     }, this)}
                                 </Row>
                             </Loader>
@@ -179,52 +259,43 @@ export default class Dashboard extends Component {
                         }}>
                             <Row>
                                 <Col md={12} className="templates-list">
-                                    <Nav bsStyle="tabs" activeKey="Amazon">
-                                      {this.state.shops.map(function(item, i) {
-                                          return <NavItem eventKey="{item.name}">{item.name}</NavItem>
-                                      }, this)}
+                                    <Nav bsStyle="tabs" activeKey={this.state.activeShop} onSelect={this.handleShop}>
+                                        {this.state.shops.map(function(item, i) {
+                                            return <NavItem eventKey={i}>{item.name}</NavItem>
+                                        }, this)}
                                     </Nav>
                                 </Col>
                             </Row>
+
                             <Row>
                                 <Col md={12}>
                                     <div className="templates">
-                                        <b>Temapltes</b>
+                                        <b>Templates</b>
                                     </div>
                                     <ul className="list-inline">
-                                        <li>
-                                            <Button disabled>None</Button>
-                                        </li>
-                                        <li>
-                                            <Button>Summertime T-shirt</Button>
-                                        </li>
-                                        <li>
-                                            <Button>Holiday T-shirt</Button>
-                                        </li>
-                                        <li>
-                                            <Button>Tropical T-shirt</Button>
-                                        </li>
+                                        {this.state.templates.map(function(item, i) {
+                                            return <li>
+                                                <Button onClick={this.handleTemplate} data-id={i} disabled={i == this.state.activeTemplate}>{item.name}</Button>
+                                            </li>
+                                        }, this)}
                                     </ul>
                                 </Col>
-                            </Row>
-                            <br/>
-                            <Row>
                                 <Col md={12}>
                                     <FormGroup>
                                         <ControlLabel>Title</ControlLabel>
-                                        <FormControl type="text" placeholder="Title - 4 to 8 words is best"/>
+                                        <FormControl type="text" placeholder="Title - 4 to 8 words is best" onChange={this.handleTitle} value={this.state.template.title}/>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
                                         <ControlLabel>Description</ControlLabel>
-                                        <FormControl type="text" placeholder="Dref description of work to get your audience all excited"/>
+                                        <FormControl type="text" placeholder="Dref description of work to get your audience all excited" onChange={this.handleFirstDescription} value={this.state.template.first_description}/>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
                                         <ControlLabel>Tags</ControlLabel>
-                                        <FormControl type="text" placeholder="Use, comas to-separate-tags"/>
+                                        <FormControl type="text" placeholder="Use, comas to-separate-tags" onChange={this.handleSecondDescription} value={this.state.template.second_description}/>
                                     </FormGroup>
                                 </Col>
                             </Row>
@@ -241,7 +312,7 @@ export default class Dashboard extends Component {
                                     : null}
                                 <Row className="scroll-block">
                                     {this.state.synonyms.map(function(item, i) {
-                                        return <Col md={6}>{item}</Col>
+                                        return <Col md={6} style={{ cursor: 'pointer' }} onClick={this.addWord} data-word={item}>{item}</Col>
                                     }, this)}
 
                                 </Row>
@@ -257,7 +328,7 @@ export default class Dashboard extends Component {
                                     : null}
                                 <Row className="scroll-block">
                                     {this.state.antonyms.map(function(item, i) {
-                                        return <Col md={6}>{item}</Col>
+                                        return <Col md={6} style={{ cursor: 'pointer' }} onClick={this.addWord} data-word={item}>{item}</Col>
                                     }, this)}
 
                                 </Row>
@@ -272,6 +343,7 @@ export default class Dashboard extends Component {
                         <Col md={2}></Col>
                         <Col md={8} className="text-right">
                             <Button bsStyle="success" onClick={this.exportData}>
+                                <i className="icon ion-arrow-down-c"></i>
                                 Export data
                             </Button>
                         </Col>
