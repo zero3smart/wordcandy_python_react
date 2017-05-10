@@ -48,13 +48,21 @@ export default class SignIn extends Component {
                   <Col md={12} className="text-center">
                     <h1 className="title">SWEET KEYWORDS FOR ECOMMERCE</h1>
                   </Col>
+                  <Col md={2}></Col>
+                  <Col md={8} className="text-center">
+                      <p>Creativity is the crux of the unwitting. You got great product, but can’t make it rain with your keywords?</p>
+                      <p>Organization, imagination, strategy….it’s overwhelming. Not anymore. Welcome to your salvation.</p>
+                      <p>A complete eCommerce keyword dashboard for your Merch designs and beyond.</p>
+                      <p>Strategy and creativity all rolled into one solution to help you 10X your sales!</p>
+                  </Col>
+                  <Col md={2}></Col>
                 </Row>
                 <Row>
                     <Col md={4}></Col>
                     <Col md={4} className="account-block">
                         <Panel>
                             <Form horizontal>
-                                <p className="text-center">SIGN IN YOUR ACCOUNT</p>
+                                <p className="text-center">LOGIN TO YOUR ACCOUNT</p>
                                 <FormGroup controlId="formHorizontalEmail">
                                     <Col  md={12}>
                                         <FormControl type="email" placeholder="Email"/>
@@ -69,7 +77,7 @@ export default class SignIn extends Component {
 
                                 <FormGroup>
                                     <Col md={12} className="text-center">
-                                        <Button block bsStyle="success" onClick={this.signIn}>
+                                        <Button block bsStyle="secondary" onClick={this.signIn}>
                                             Sign in
                                         </Button>
                                     </Col>

@@ -5,6 +5,7 @@ import SignUp from './views/signUp';
 import SignIn from './views/signIn';
 import Dashboard from './views/dashboard';
 import Landing from './views/landing';
+import Profile from './views/profile';
 
 function run() {
     ReactDOM.render((
@@ -12,6 +13,7 @@ function run() {
             <Route path="/" component={Landing}/>
             <Route path="/dashboard" component={Dashboard}/>
             <Route path="/sign-up" component={SignUp}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="/sign-in" component={SignIn}/>
         </Router>
     ), document.getElementById('app'));

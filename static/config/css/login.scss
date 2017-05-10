@@ -1,46 +1,72 @@
 .login-page {
-  background: url('/static/images/login/background-main.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+    background: url('/static/images/login/background-main.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 
-  .panel-default {
-      border-color: transparent;
-  }
-
-  .navbar-default {
-    background-color: transparent;
-    border-color: transparent;
-    .text-success a, .text-success a:hover, .text-success a:focus {
-      color: $brand-success;
-      font-weight: bold;
+    .panel-default {
+        border-color: transparent;
     }
-    .text-secondary a, .text-secondary a:hover, .text-secondary a:focus {
-      color: $secondary;
-      font-weight: bold;
-    }
-  }
-  .title {
-    padding-bottom: 10px;
-    letter-spacing: 2px;
-    font-size: 45px;
-  }
-  p {
-    font-size: 16px;
-    color: #616277;
-  }
 
-  .account-block {
-    padding-top: 30px;
-    .panel {
-      background-color: #a07baf;
-      border-color: #a07baf;
-      p {
+    .navbar-default {
+        background-color: transparent;
+        border-color: transparent;
+
+        .text-success a,
+        .text-success a:focus,
+        .text-success a:hover {
+            color: $brand-success;
+            font-weight: bold;
+        }
+
+        .text-secondary a,
+        .text-secondary a:focus,
+        .text-secondary a:hover {
+            color: $secondary;
+            font-weight: bold;
+        }
+    }
+
+    .title {
+        padding-bottom: 10px;
+        letter-spacing: 2px;
+        font-size: 45px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #616277;
+    }
+
+    .account-block {
+        padding-top: 30px;
+
+        .panel {
+            background-color: #a07baf;
+            border-color: #a07baf;
+
+            p {
+                color: #fff;
+            }
+        }
+    }
+
+    .login-redirect {
+        text-align: center;
+
+        a,
+        a:focus,
+        a:hover {
+            color: #fff;
+        }
+    }
+
+    .btn-secondary {
         color: #fff;
-      }
+        background: transparent;
+        border-color: #fff;
     }
-  }
 }

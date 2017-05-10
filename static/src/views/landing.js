@@ -139,7 +139,7 @@ export default class Landing extends Component {
                                         }}>
                                             <FormControl style={{
                                                 'width': '100%'
-                                            }} type="text" type="email" placeholder="Enter Your Email"/>
+                                            }} type="email" placeholder="Enter Your Email"/>
                                         </FormGroup>
                                         <FormGroup style={{
                                             'width': '10%'
