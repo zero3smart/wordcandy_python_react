@@ -36,7 +36,6 @@ urlpatterns = [
     url(r'^v1/', include('rest_auth.urls')),
     url(r'^v1/registration/', include('rest_auth.registration.urls')),
     url(r'^v1/dashboard/', include('api.urls')),
-    url(r'^payments/', include('djstripe.urls', namespace="djstripe")),
 ]
 
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Template, Shop
+from .models import Template, Shop, Subscribe
 
 class TemplateAdmin(admin.ModelAdmin):
     list_display = ['name', 'shop']
@@ -15,3 +15,10 @@ class ShopAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_date'
 
 admin.site.register(Shop, ShopAdmin)
+
+
+class SubscribeAdmin(admin.ModelAdmin):
+    list_display = ['email', ]
+    date_hierarchy = 'created_date'
+
+admin.site.register(Subscribe, SubscribeAdmin)

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Shop, Template
+from api.models import Shop, Template, Subscribe
 
 
 class SynonymsSerializer(serializers.Serializer):
@@ -14,6 +14,13 @@ class AntonymsSerializer(serializers.Serializer):
 class TemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Template
+        exclude = ()
+
+
+class SubscribeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Subscribe
         exclude = ()
 
 

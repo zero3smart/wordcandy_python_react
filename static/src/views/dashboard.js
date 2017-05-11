@@ -22,7 +22,10 @@ import axios from 'axios';
 import Loader from 'react-loader';
 import format from 'string-format';
 
-export default class Dashboard extends Component {
+import MixinAuth from '../mixins/auth';
+
+
+export default class Dashboard extends MixinAuth {
 
     constructor(props) {
         super(props);
@@ -37,8 +40,9 @@ export default class Dashboard extends Component {
             activeTemplate: 0,
             activeShop: 0,
             loaded: true,
+            username: localStorage.getItem('username'),
             thumbnail: '/static/images/dashboard/photo.png',
-            url: 'https://wordcandy.herokuapp.com'
+            url: 'http://www.wordcandy.io'
         };
         this.onUploadImage = this.onUploadImage.bind(this);
         this.calculate = this.calculate.bind(this);
@@ -165,7 +169,7 @@ export default class Dashboard extends Component {
               <Navbar>
                   <Navbar.Header>
                       <Navbar.Brand>
-                          <a href="#">WORDCANDY.IO</a>
+                          <Link to="/dashboard">WORDCANDY.IO</Link>
                           <span>{' '}
                               - {' '}KEYWORD APP</span>
                       </Navbar.Brand>
@@ -174,7 +178,7 @@ export default class Dashboard extends Component {
                       <NavItem href="/profile" className="profile-header">
                           <ul className="list-inline">
                               <li><Image width={'20px'} height={'20px'} src="/static/images/profile/avatar.png"/></li>
-                              <li>Tomas Anderson</li>
+                              <li>{this.state.username}</li>
                               <li>
                                   <i className="icon ion-chevron-down"></i>
                               </li>

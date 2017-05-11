@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
+from rest_framework import status
 
 from django.http import HttpResponse
 from django.conf import settings
@@ -8,8 +9,8 @@ from django.conf import settings
 import requests
 from datetime import datetime
 
-from .serializers import SynonymsSerializer, AntonymsSerializer, ShopSerializer, TemplateSerializer
-from .models import Shop
+from .serializers import SynonymsSerializer, AntonymsSerializer, ShopSerializer, TemplateSerializer, SubscribeSerializer
+from .models import Shop, Subscribe
 
 from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl import Workbook
@@ -118,3 +119,18 @@ class ShopList(GenericAPIView):
         shops = Shop.objects.all()
         serializer = self.serializer_class(shops, many=True)
         return Response(serializer.data)
+
+
+class SubscribeView(GenericAPIView):
+    serializer_class = SubscribeSerializer
+
+    def post(self, request, format=None):
+        """
+        Return add email to subscribe
+        """
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

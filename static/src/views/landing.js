@@ -19,6 +19,69 @@ import {
 import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 
+import {apiProfiles} from '../api/profiles';
+
+class Subscribe extends Component {
+    componentDidMount() {
+        $('form').validator();
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: ''
+        };
+        this.subscribe = this.subscribe.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
+    }
+
+    handleEmail(event) {
+        this.setState({email: event.target.value});
+    }
+
+    subscribe(e) {
+        var _ = this;
+        $('form').validator().on('submit', function(e) {
+            if (e.isDefaultPrevented()) {} else {
+                let data = {
+                    email: _.state.email
+                }
+                apiProfiles.subscribe(data).then((response) => {
+                    _.setState({email: ''});
+                    return response;
+                }).then((json) => {
+                    _.setState({email: ''});
+                    return json;
+                });
+            }
+            e.preventDefault();
+        });
+
+    }
+
+    render() {
+        return (
+            <Form inline data-toggle="validator" role="form">
+                <FormGroup style={{
+                    'width': '90%',
+                    'padding-right': '10px'
+                }}>
+                    <FormControl style={{
+                        'width': '100%'
+                    }} type="email" id="email" name="email" onChange={this.handleEmail} value={this.state.email} required placeholder="Enter Your Email"/>
+                </FormGroup>
+                <FormGroup style={{
+                    'width': '10%'
+                }}>
+                    <Button type="submit" onClick={this.subscribe} bsStyle="success">
+                        Subscribe
+                    </Button>
+                </FormGroup>
+            </Form>
+        )
+    }
+}
+
 export default class Landing extends Component {
 
     constructor(props) {
@@ -37,8 +100,12 @@ export default class Landing extends Component {
                             </Navbar.Brand>
                         </Navbar.Header>
                         <Nav pullRight>
-                            <NavItem className="text-secondary"><Link to="/sign-up">Get Started</Link></NavItem>
-                            <NavItem className="text-success"><Link to="/sign-in">Login</Link></NavItem>
+                            <NavItem className="text-secondary">
+                                <Link to="/sign-up">Get Started</Link>
+                            </NavItem>
+                            <NavItem className="text-success">
+                                <Link to="/sign-in">Login</Link>
+                            </NavItem>
                         </Nav>
                     </Navbar>
                     <Col md={12} className="text-center">
@@ -90,7 +157,9 @@ export default class Landing extends Component {
                                                 <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                              <Link to="/sign-up"><Button bsStyle="success">Start 3 day FREE trial</Button></Link>
+                                                <Link to="/sign-up">
+                                                    <Button bsStyle="success">Start 3 day FREE trial</Button>
+                                                </Link>
                                             </p>
                                         </Col>
                                     </Row>
@@ -99,21 +168,21 @@ export default class Landing extends Component {
                             <Col md={6}>
                                 <div className="wave"></div>
                                 <Panel className="tariff-description">
-                                  <Row className="tariff-header">
-                                      <Col md={12}>
-                                          <ul className="list-inline">
-                                              <li>
-                                                  <span>Beginner</span>
-                                              </li>
-                                              <li className="period">
-                                                  <Tabs disabled defaultActiveKey={1} animation={false}>
-                                                      <Tab eventKey={1} title="month"></Tab>
-                                                      <Tab eventKey={2} title="year"></Tab>
-                                                  </Tabs>
-                                              </li>
-                                          </ul>
-                                      </Col>
-                                  </Row>
+                                    <Row className="tariff-header">
+                                        <Col md={12}>
+                                            <ul className="list-inline">
+                                                <li>
+                                                    <span>Beginner</span>
+                                                </li>
+                                                <li className="period">
+                                                    <Tabs disabled defaultActiveKey={1} animation={false}>
+                                                        <Tab eventKey={1} title="month"></Tab>
+                                                        <Tab eventKey={2} title="year"></Tab>
+                                                    </Tabs>
+                                                </li>
+                                            </ul>
+                                        </Col>
+                                    </Row>
                                     <Row className="tariff-body tariff-body-background">
                                         <Col md={12}>
                                             <p>
@@ -122,7 +191,9 @@ export default class Landing extends Component {
                                                 / per month</p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
-                                                <Link to="/sign-up"><Button bsStyle="success">Start 3 day FREE trial</Button></Link>
+                                                <Link to="/sign-up">
+                                                    <Button bsStyle="success">Start 3 day FREE trial</Button>
+                                                </Link>
                                             </p>
                                         </Col>
                                     </Row>
@@ -132,23 +203,7 @@ export default class Landing extends Component {
                         <Row className="text-left subscribe">
                             <Col md={12}>
                                 <Panel header="Get alerted when we launch">
-                                    <Form inline>
-                                        <FormGroup style={{
-                                            'width': '90%',
-                                            'padding-right': '10px'
-                                        }}>
-                                            <FormControl style={{
-                                                'width': '100%'
-                                            }} type="email" placeholder="Enter Your Email"/>
-                                        </FormGroup>
-                                        <FormGroup style={{
-                                            'width': '10%'
-                                        }}>
-                                            <Button type="submit" bsStyle="success">
-                                                Submit
-                                            </Button>
-                                        </FormGroup>
-                                    </Form>
+                                    <Subscribe/>
                                 </Panel>
                             </Col>
                         </Row>
@@ -196,7 +251,9 @@ export default class Landing extends Component {
                 </Row>
                 <Row className="started">
                     <Col className="text-center" md={12}>
-                        <Link to="/sign-up"><Button bsStyle="success">Get Started</Button></Link>
+                        <Link to="/sign-up">
+                            <Button bsStyle="success">Get Started</Button>
+                        </Link>
                     </Col>
                 </Row>
                 <Row className="footer">

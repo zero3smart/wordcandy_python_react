@@ -20,18 +20,22 @@ import MaskedFormControl from 'react-bootstrap-maskedinput';
 import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 
-export default class Profile extends Component {
+import MixinAuth from '../mixins/auth';
+
+
+export default class Profile extends MixinAuth {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: 'Jonathan Andreson',
+            name: localStorage.getItem('username'),
             activeName: false,
-            email: 'JonathanAndreson@gmail.com',
+            email: 'Hidden email',
             activeEmail: false,
             activePassword: false,
             activePlan: false,
-            activePayment: false
+            activePayment: false,
+            username: localStorage.getItem('username'),
         };
         this.handleName = this.handleName.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
@@ -51,7 +55,7 @@ export default class Profile extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">WORDCANDY.IO</a>
+                            <Link to="/dashboard">WORDCANDY.IO</Link>
                             <span>{' '}
                                 - {' '}KEYWORD APP</span>
                         </Navbar.Brand>
@@ -60,7 +64,7 @@ export default class Profile extends Component {
                         <NavItem href="/profile" className="profile-header">
                             <ul className="list-inline">
                                 <li><Image width={'20px'} height={'20px'} src="/static/images/profile/avatar.png"/></li>
-                                <li>Tomas Anderson</li>
+                                <li>{this.state.username}</li>
                                 <li>
                                     <i className="icon ion-chevron-down"></i>
                                 </li>
@@ -71,7 +75,7 @@ export default class Profile extends Component {
                 <Row>
                     <Col md={2}></Col>
                     <Col md={8}>
-                        <Panel>
+                        <Panel className="profile-block">
                             <Row>
                                 <Col md={3} className="profile-title">
                                     Information
@@ -105,7 +109,7 @@ export default class Profile extends Component {
                                                 ? <a href="#" onClick={() => this.setState({activeName: false})}>Cancel</a>
                                                 : null}
                                             {this.state.activeName == false
-                                                ? <a href="#" onClick={() => this.setState({activeName: true})}>Change</a>
+                                                ? <a href="#" onClick={() => this.setState({activeName: false})}>Change</a>
                                                 : null}
                                         </Col>
                                     </Row>
@@ -137,7 +141,7 @@ export default class Profile extends Component {
                                                             <b>{this.state.email}</b>
                                                         </div>
                                                         <div>
-                                                            <Checkbox inline>
+                                                            <Checkbox disabled inline>
                                                                 Send me news and notifications
                                                             </Checkbox>
                                                         </div>
@@ -149,7 +153,7 @@ export default class Profile extends Component {
                                                 ? <a href="#" onClick={() => this.setState({activeEmail: false})}>Cancel</a>
                                                 : null}
                                             {this.state.activeEmail == false
-                                                ? <a href="#" onClick={() => this.setState({activeEmail: true})}>Change</a>
+                                                ? <a href="#" onClick={() => this.setState({activeEmail: false})}>Change</a>
                                                 : null}
                                         </Col>
                                     </Row>
@@ -202,7 +206,7 @@ export default class Profile extends Component {
                                                 ? <a href="#" onClick={() => this.setState({activePassword: false})}>Cancel</a>
                                                 : null}
                                             {this.state.activePassword == false
-                                                ? <a href="#" onClick={() => this.setState({activePassword: true})}>Change</a>
+                                                ? <a href="#" onClick={() => this.setState({activePassword: false})}>Change</a>
                                                 : null}
                                         </Col>
                                     </Row>
@@ -221,14 +225,14 @@ export default class Profile extends Component {
                                         <Col md={7}>
                                             {this.state.activePlan == false
                                                 ? <div>
-                                                        <b>Profesional Seller</b>
+                                                        <b>Free</b>
                                                     </div>
                                                 : null}
                                             {this.state.activePlan
                                                 ? <div>
                                                         <FormGroup controlId="formControlsSelect">
-                                                            <FormControl componentClass="select" placeholder="Profesional Seller">
-                                                                <option value="select">Profesional Seller</option>
+                                                            <FormControl componentClass="select" placeholder="Free">
+                                                                <option value="select">Free</option>
                                                             </FormControl>
                                                         </FormGroup>
                                                         <FormGroup className="text-right">
@@ -244,7 +248,7 @@ export default class Profile extends Component {
                                                 ? <a href="#" onClick={() => this.setState({activePlan: false})}>Cancel</a>
                                                 : null}
                                             {this.state.activePlan == false
-                                                ? <a href="#" onClick={() => this.setState({activePlan: true})}>Change</a>
+                                                ? <a href="#" onClick={() => this.setState({activePlan: false})}>Change</a>
                                                 : null}
                                         </Col>
                                     </Row>
@@ -260,7 +264,7 @@ export default class Profile extends Component {
                                         <Col md={7}>
                                             {this.state.activePayment == false
                                                 ? <div>
-                                                        <b>Master Card **** **** **** 7579</b>
+                                                        <b>Master Card **** **** **** ****</b>
                                                     </div>
                                                 : null}
                                             {this.state.activePayment
@@ -281,7 +285,7 @@ export default class Profile extends Component {
                                                 ? <a href="#" onClick={() => this.setState({activePayment: false})}>Cancel</a>
                                                 : null}
                                             {this.state.activePayment == false
-                                                ? <a href="#" onClick={() => this.setState({activePayment: true})}>Change</a>
+                                                ? <a href="#" onClick={() => this.setState({activePayment: false})}>Change</a>
                                                 : null}
                                         </Col>
                                     </Row>
@@ -360,7 +364,7 @@ export default class Profile extends Component {
                             </Button>
                         </Col>
                         <Col md={4} className="text-right">
-                            <Button bsStyle="success">
+                            <Button bsStyle="success" disabled>
                                 <i className="icon ion-checkmark-circled"></i>
                                 Done
                             </Button>
