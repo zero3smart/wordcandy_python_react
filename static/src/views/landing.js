@@ -63,7 +63,7 @@ class Subscribe extends Component {
         return (
             <Form inline data-toggle="validator" role="form">
                 <FormGroup style={{
-                    'width': '90%',
+                    'width': '80%',
                     'padding-right': '10px'
                 }}>
                     <FormControl style={{
@@ -71,7 +71,7 @@ class Subscribe extends Component {
                     }} type="email" id="email" name="email" onChange={this.handleEmail} value={this.state.email} required placeholder="Enter Your Email"/>
                 </FormGroup>
                 <FormGroup style={{
-                    'width': '10%'
+                    'width': '20%'
                 }}>
                     <Button type="submit" onClick={this.subscribe} bsStyle="success">
                         Subscribe

@@ -19,7 +19,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import {apiProfiles} from '../api/profiles';
-import axios from 'axios';
 
 class Forms extends Component {
     componentDidMount() {
@@ -36,6 +35,7 @@ class Forms extends Component {
 
     signIn(e) {
         var _ = this;
+        alert(1);
         $('form').validator().on('submit', function(e) {
             if (e.isDefaultPrevented()) {} else {
                 let data = {};
