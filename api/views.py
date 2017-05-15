@@ -79,16 +79,20 @@ class KeywordToolView(APIView):
                 'metrics_language': 'en'
             }
             data = requests.get('http://api.keywordtool.io/v2/search/suggestions/amazon', params=payload)
-            for item in data.json()['results']:
-                for sub_item in data.json()['results'][item]:
-                    try:
-                        if sub_item['volume']:
-                            result['keywords'].append({
-                                'name': sub_item['string'],
-                                'volume': sub_item['volume']
-                            })
-                    except Exception as e:
-                        pass
+            try:
+                for item in data.json()['results']:
+                    for sub_item in data.json()['results'][item]:
+                        try:
+                            if sub_item['volume']:
+                                result['keywords'].append({
+                                    'name': sub_item['string'],
+                                    'volume': sub_item['volume']
+                                })
+                        except Exception as e:
+                            pass
+            except Exception as e:
+                pass
+
 
         return Response(result)
 
