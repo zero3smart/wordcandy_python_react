@@ -210,14 +210,14 @@ export default class Dashboard extends MixinAuth {
                                 <Row>
                                     <Col md={9}>
                                         <FormGroup controlId="formControlsTextarea" style={{'width': '100%'}}>
-                                            <TagsInput value={this.state.tags} onChange={:: this.handleChangeTags}/>
+                                            <TagsInput maxTags={4} value={this.state.tags} onChange={:: this.handleChangeTags}/>
                                         </FormGroup>
                                     </Col>
                                     <Col md={3} className="text-center">
                                         <Row>
                                           <Col md={2}></Col>
                                           <Col md={8}>
-                                            <Button bsStyle="primary" block onClick={this.calculate}>
+                                            <Button disabled={this.state.tags.length == 0} bsStyle="primary" block onClick={this.calculate}>
                                                 <i className="icon ion-calculator"></i>
                                                 Calculate
                                             </Button>
