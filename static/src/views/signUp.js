@@ -29,7 +29,8 @@ class Forms extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: false
+          error: false,
+          errorText: ''
         };
         this.signUp = this.signUp.bind(this);
     }
@@ -42,18 +43,22 @@ class Forms extends Component {
                 $('form').serializeArray().map(item => {
                     data[item.name] = item.value;
                 });
-                apiProfiles.signUp(data).then((response) => {
-                    if (response.hasOwnProperty('key')) {
-                        localStorage.setItem('key', response.key);
-                        localStorage.setItem('username', data['username']);
-                        browserHistory.push('/dashboard');
-                    } else {
-                        _.setState({error: true});
+                apiProfiles.signUp(data).then(function(response) {
+                    switch (response.status) {
+                        case 400:
+                            var errorText = '';
+                            Object.keys(response.data).forEach(function (item) {
+                              errorText = response.data[item]
+                            })
+                            _.setState({errorText: errorText});
+                            _.setState({error: true});
+                            break;
+                        case 200:
+                            localStorage.setItem('key', response.key);
+                            localStorage.setItem('username', data['username']);
+                            browserHistory.push('/dashboard');
+                            break;
                     }
-                    return response;
-                }).then((json) => {
-                    _.setState({error: true});
-                    return json;
                 });
             }
             e.preventDefault();
@@ -89,11 +94,12 @@ class Forms extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center" style={{paddingBottom: '5px'}}>
                         <Button type="submit" block bsStyle="secondary" onClick={this.signUp}>
                             Create account
                         </Button>
                     </Col>
+                    <Row>
                     {this.state.error == false
                         ? <Col md={12} className="login-redirect">
                                 <Link to="/sign-in">Already have an account?{' '}
@@ -103,14 +109,12 @@ class Forms extends Component {
                         : null}
                     {this.state.error
                         ? <Col md={12} className="text-center">
-                                <p>
-                                    <Alert bsStyle="error">
-                                        <p>Please enter a stronger password.</p>
-                                    </Alert>
-                                </p>
-
-                            </Col>
+                            <p>
+                                {this.state.errorText}
+                            </p>
+                          </Col>
                         : null}
+                    </Row>
                 </FormGroup>
             </Form>
         )

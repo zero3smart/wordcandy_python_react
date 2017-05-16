@@ -25,7 +25,7 @@ class Template(models.Model):
     shop = models.ForeignKey(Shop)
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255, blank=True)
-    order = models.IntegerField(default=0)
+    sort = models.IntegerField(default=0)
     product_name = models.CharField(max_length=255, blank=True)
     first_description = models.CharField(max_length=255, blank=True)
     second_description = models.CharField(max_length=255, blank=True)

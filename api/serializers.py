@@ -33,6 +33,6 @@ class ShopSerializer(serializers.ModelSerializer):
         fields = ('id', 'templates', 'name')
 
     def is_templates(self, obj):
-        templates = Template.objects.filter(shop=obj).order_by('order')
+        templates = Template.objects.filter(shop=obj).order_by('sort')
         serializer = TemplateSerializer(templates, many=True)
         return serializer.data

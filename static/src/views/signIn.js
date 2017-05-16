@@ -28,32 +28,35 @@ class Forms extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: false
+            error: false,
+            errorText: ''
         };
         this.signIn = this.signIn.bind(this);
     }
 
     signIn(e) {
         var _ = this;
-        alert(1);
         $('form').validator().on('submit', function(e) {
             if (e.isDefaultPrevented()) {} else {
                 let data = {};
                 $('form').serializeArray().map(item => {
                     data[item.name] = item.value;
                 });
-                apiProfiles.signIn(data).then((response) => {
-                    if (response.hasOwnProperty('key')) {
-                        localStorage.setItem('key', response.key);
-                        localStorage.setItem('username', data['username']);
-                        browserHistory.push('/dashboard');
-                    } else {
-                        _.setState({error: true});
+                apiProfiles.signIn(data).then(function(response) {
+                    switch (response.status) {
+                        case 400:
+                            for (var i = 0; i < response.data.non_field_errors.length; i++) {
+                                var errorText = response.data.non_field_errors[i];
+                            }
+                            _.setState({error: true});
+                            _.setState({errorText: errorText});
+                            break;
+                        case 200:
+                            localStorage.setItem('key', response.key);
+                            localStorage.setItem('username', data['username']);
+                            browserHistory.push('/dashboard');
+                            break;
                     }
-                    return response;
-                }).then((json) => {
-                    _.setState({error: true});
-                    return json;
                 });
             }
             e.preventDefault();
@@ -77,7 +80,7 @@ class Forms extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center"  style={{paddingBottom: '5px'}}>
                         <Button type="submit" block bsStyle="secondary" onClick={this.signIn}>
                             Login
                         </Button>
@@ -85,10 +88,8 @@ class Forms extends Component {
                     <Col md={12} className="text-center">
                         {this.state.error
                             ? <p>
-                                    <Alert bsStyle="error">
-                                        <p>The email and password that you entered did not match our records. Please double-check and try again.</p>
-                                    </Alert>
-                                </p>
+                              {this.state.errorText}
+                              </p>
                             : null}
                     </Col>
                 </FormGroup>

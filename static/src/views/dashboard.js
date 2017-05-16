@@ -209,25 +209,31 @@ export default class Dashboard extends MixinAuth {
                             <Form inline>
                                 <Row>
                                     <Col md={9}>
-                                        <FormGroup controlId="formControlsTextarea">
+                                        <FormGroup controlId="formControlsTextarea" style={{'width': '100%'}}>
                                             <TagsInput value={this.state.tags} onChange={:: this.handleChangeTags}/>
                                         </FormGroup>
                                     </Col>
                                     <Col md={3} className="text-center">
-                                        <Button bsStyle="primary" style={{
-                                            width: '100px',
-                                            marginBottom: '10px'
-                                        }} onClick={this.calculate}>
-                                            <i className="icon ion-calculator"></i>
-                                            Calculate
-                                        </Button>
-
-                                        <Button bsStyle="primary" style={{
-                                            width: '100px'
-                                        }} onClick={this.reset}>
-                                            <i className="icon ion-android-refresh"></i>
-                                            Reset
-                                        </Button>
+                                        <Row>
+                                          <Col md={2}></Col>
+                                          <Col md={8}>
+                                            <Button bsStyle="primary" block onClick={this.calculate}>
+                                                <i className="icon ion-calculator"></i>
+                                                Calculate
+                                            </Button>
+                                          </Col>
+                                          <Col md={2}></Col>
+                                        </Row>
+                                        <Row style={{paddingTop: '5px'}}>
+                                          <Col md={2}></Col>
+                                          <Col md={8}>
+                                            <Button bsStyle="primary" block onClick={this.reset}>
+                                                <i className="icon ion-android-refresh"></i>
+                                                Reset
+                                            </Button>
+                                          </Col>
+                                          <Col md={2}></Col>
+                                        </Row>
                                     </Col>
                                 </Row>
                             </Form>

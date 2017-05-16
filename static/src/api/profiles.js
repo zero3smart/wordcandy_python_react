@@ -11,10 +11,13 @@ exports.apiProfiles = {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: data
+                data: data,
+                validateStatus: function (status) {
+                  return status;
+                }
             })
             .then(response => {
-                return response.data;
+                return response;
             }).catch(function(error) {
                 return error;
             });
@@ -27,10 +30,13 @@ exports.apiProfiles = {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: data
+                data: data,
+                validateStatus: function (status) {
+                  return status;
+                }
             })
             .then(response => {
-                return response.data;
+                return response;
             }).catch(function(error) {
                 return error;
             });
