@@ -171,13 +171,13 @@ export default class Landing extends Component {
                                             <p>
                                                 <span className="dollar">$</span>
                                                 {this.state.planProfesional == 1 ?
-                                                  <span className="value">69</span>
+                                                  <span><span className="value">69</span> / per month</span>
                                                 : null}
                                                 {this.state.planProfesional == 2 ?
-                                                  <span className="value">690</span>
+                                                  <span><span className="value">690</span> / per year
+                                                  <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></span>
                                                 : null}
-                                                / per year
-                                                <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
+                                            </p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
                                                 <Link to="/sign-up">
@@ -210,14 +210,13 @@ export default class Landing extends Component {
                                         <Col md={12}>
                                             <p>
                                                 <span className="dollar">$</span>
-                                                  <span className="dollar">$</span>
                                                   {this.state.planBeginner == 1 ?
-                                                    <span className="value">29</span>
+                                                    <span><span className="value">29</span> / per month</span>
                                                   : null}
                                                   {this.state.planBeginner == 2 ?
-                                                    <span className="value">290</span>
+                                                    <span><span className="value">290</span> / per year</span>
                                                   : null}
-                                                / per month</p>
+                                            </p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
                                                 <Link to="/sign-up">

@@ -3,7 +3,34 @@
     background-color: #56576c;
 
     .ion-android-add-circle {
-      color: #dbb1bc;
+        color: #dbb1bc;
+        cursor: pointer;
+    }
+
+    .dashboard-content {
+        padding-left: 30px;
+        padding-right: 30px;
+
+        .suggestions {
+            .row {
+                margin-left: -5px;
+                margin-right: -5px;
+            }
+
+            .index {
+                color: #afafbd;
+            }
+
+            .name {
+                width: 190px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 700;
+                padding-left: 10px;
+                font-weight: bold;
+            }
+        }
     }
 
     .scroll-block {

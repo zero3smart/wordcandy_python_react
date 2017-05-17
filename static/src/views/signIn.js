@@ -17,6 +17,7 @@ import {
 import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import Loader from 'react-loader';
 
 import {apiProfiles} from '../api/profiles';
 
@@ -29,7 +30,8 @@ class Forms extends Component {
         super(props);
         this.state = {
             error: false,
-            errorText: ''
+            errorText: '',
+            loaded: true
         };
         this.signIn = this.signIn.bind(this);
     }
@@ -42,6 +44,7 @@ class Forms extends Component {
                 $('form').serializeArray().map(item => {
                     data[item.name] = item.value;
                 });
+                _.setState({loaded: false});
                 apiProfiles.signIn(data).then(function(response) {
                     switch (response.status) {
                         case 400:
@@ -57,6 +60,7 @@ class Forms extends Component {
                             browserHistory.push('/dashboard');
                             break;
                     }
+                    _.setState({loaded: true});
                 });
             }
             e.preventDefault();
@@ -66,7 +70,6 @@ class Forms extends Component {
     render() {
         return (
             <Form horizontal data-toggle="validator" role="form">
-
                 <FormGroup>
                     <Col md={12}>
                         <FormControl type="text" name="username" id="username" placeholder="Username" required/>
@@ -81,18 +84,21 @@ class Forms extends Component {
 
                 <FormGroup>
                     <Col md={12} className="text-center"  style={{paddingBottom: '5px'}}>
-                        <Button type="submit" block bsStyle="secondary" onClick={this.signIn}>
-                            Login
-                        </Button>
+                        <Loader loaded={this.state.loaded}>
+                          <Button type="submit" block bsStyle="secondary" onClick={this.signIn}>
+                              Login
+                          </Button>
+                        </Loader>
                     </Col>
-                    <Col md={12} className="text-center">
+                    <Col md={12} className="text-center error-text">
                         {this.state.error
                             ? <p>
-                              {this.state.errorText}
+                              <i className="icon ion-android-alert"></i>{this.state.errorText}
                               </p>
                             : null}
                     </Col>
                 </FormGroup>
+
             </Form>
         )
     }

@@ -19,7 +19,7 @@ from openpyxl import Workbook
 from rest_framework_tracking.mixins import LoggingMixin
 
 
-class SynonymsView(LoggingMixin, APIView):
+class SynonymsView(LoggingMixin, GenericAPIView):
 
     def get(self, request, format=None):
         """
@@ -39,7 +39,7 @@ class SynonymsView(LoggingMixin, APIView):
         return Response(data)
 
 
-class AntonymsView(LoggingMixin, APIView):
+class AntonymsView(LoggingMixin, GenericAPIView):
 
     def get(self, request, format=None):
         """
@@ -59,7 +59,7 @@ class AntonymsView(LoggingMixin, APIView):
         return Response(data)
 
 
-class KeywordToolView(LoggingMixin, APIView):
+class KeywordToolView(LoggingMixin, GenericAPIView):
 
     def get(self, request, format=None):
         """
@@ -106,7 +106,7 @@ class KeywordToolView(LoggingMixin, APIView):
         return Response(result)
 
 
-class ExcelView(LoggingMixin, APIView):
+class ExcelView(LoggingMixin, GenericAPIView):
 
     def get(self, request, format=None):
         """

@@ -17,6 +17,7 @@ import {
 import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import Loader from 'react-loader';
 
 import {apiProfiles} from '../api/profiles';
 import axios from 'axios';
@@ -30,7 +31,8 @@ class Forms extends Component {
         super(props);
         this.state = {
           error: false,
-          errorText: ''
+          errorText: '',
+          loaded: true
         };
         this.signUp = this.signUp.bind(this);
     }
@@ -43,6 +45,7 @@ class Forms extends Component {
                 $('form').serializeArray().map(item => {
                     data[item.name] = item.value;
                 });
+                _.setState({loaded: false});
                 apiProfiles.signUp(data).then(function(response) {
                     switch (response.status) {
                         case 400:
@@ -59,6 +62,7 @@ class Forms extends Component {
                             browserHistory.push('/dashboard');
                             break;
                     }
+                    _.setState({loaded: true});
                 });
             }
             e.preventDefault();
@@ -94,11 +98,13 @@ class Forms extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                    <Col md={12} className="text-center" style={{paddingBottom: '5px'}}>
-                        <Button type="submit" block bsStyle="secondary" onClick={this.signUp}>
-                            Create account
-                        </Button>
-                    </Col>
+                    <Loader loaded={this.state.loaded}>
+                      <Col md={12} className="text-center" style={{paddingBottom: '5px'}}>
+                          <Button type="submit" block bsStyle="secondary" onClick={this.signUp}>
+                              Create account
+                          </Button>
+                      </Col>
+                    </Loader>
                     <Row>
                     {this.state.error == false
                         ? <Col md={12} className="login-redirect">
@@ -107,12 +113,12 @@ class Forms extends Component {
                                 </Link>
                             </Col>
                         : null}
-                    {this.state.error
-                        ? <Col md={12} className="text-center">
-                            <p>
-                                {this.state.errorText}
+                        {this.state.error ?
+                        <Col md={12} className="text-center error-text">
+                             <p>
+                                  <i className="icon ion-android-alert"></i>{this.state.errorText}
                             </p>
-                          </Col>
+                        </Col>
                         : null}
                     </Row>
                 </FormGroup>
