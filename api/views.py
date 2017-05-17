@@ -16,8 +16,10 @@ from .models import Shop, Subscribe, Word
 from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl import Workbook
 
+from rest_framework_tracking.mixins import LoggingMixin
 
-class SynonymsView(APIView):
+
+class SynonymsView(LoggingMixin, APIView):
 
     def get(self, request, format=None):
         """
@@ -37,7 +39,7 @@ class SynonymsView(APIView):
         return Response(data)
 
 
-class AntonymsView(APIView):
+class AntonymsView(LoggingMixin, APIView):
 
     def get(self, request, format=None):
         """
@@ -57,7 +59,7 @@ class AntonymsView(APIView):
         return Response(data)
 
 
-class KeywordToolView(APIView):
+class KeywordToolView(LoggingMixin, APIView):
 
     def get(self, request, format=None):
         """
@@ -80,6 +82,7 @@ class KeywordToolView(APIView):
                     'metrics_location': '2840',
                     'metrics_language': 'en'
                 }
+                word = word.lower()
 
                 word_result = Word.objects.filter(name=word).first()
 
@@ -103,7 +106,7 @@ class KeywordToolView(APIView):
         return Response(result)
 
 
-class ExcelView(APIView):
+class ExcelView(LoggingMixin, APIView):
 
     def get(self, request, format=None):
         """
@@ -119,7 +122,7 @@ class ExcelView(APIView):
         return response
 
 
-class ShopList(GenericAPIView):
+class ShopList(LoggingMixin, GenericAPIView):
     serializer_class = ShopSerializer
 
     def get(self, request, format=None):
@@ -131,7 +134,7 @@ class ShopList(GenericAPIView):
         return Response(serializer.data)
 
 
-class SubscribeView(GenericAPIView):
+class SubscribeView(LoggingMixin, GenericAPIView):
     serializer_class = SubscribeSerializer
 
     def post(self, request, format=None):

@@ -23,7 +23,7 @@ import {apiProfiles} from '../api/profiles';
 
 class Subscribe extends Component {
     componentDidMount() {
-        $('form').validator();
+
     }
 
     constructor(props) {
@@ -40,6 +40,7 @@ class Subscribe extends Component {
     }
 
     subscribe(e) {
+        $('form').validator();
         var _ = this;
         $('form').validator().on('submit', function(e) {
             if (e.isDefaultPrevented()) {} else {
@@ -86,7 +87,24 @@ export default class Landing extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+          planProfesional: 2,
+          planBeginner: 1
+        };
+        this.handleProfesional = this.handleProfesional.bind(this);
+        this.handleBeginner = this.handleBeginner.bind(this);
+    }
+
+    handleProfesional(key) {
+      this.setState({
+        planProfesional: key
+      });
+    }
+
+    handleBeginner(key) {
+      this.setState({
+        planBeginner: key
+      });
     }
 
     render() {
@@ -140,7 +158,7 @@ export default class Landing extends Component {
                                                     <span>Profesional Seller</span>
                                                 </li>
                                                 <li className="period">
-                                                    <Tabs defaultActiveKey={2} animation={false}>
+                                                    <Tabs onSelect={this.handleProfesional} defaultActiveKey={this.state.planProfesional} animation={false}>
                                                         <Tab eventKey={1} title="month"></Tab>
                                                         <Tab eventKey={2} title="year"></Tab>
                                                     </Tabs>
@@ -152,7 +170,12 @@ export default class Landing extends Component {
                                         <Col md={12}>
                                             <p>
                                                 <span className="dollar">$</span>
-                                                <span className="value">690</span>
+                                                {this.state.planProfesional == 1 ?
+                                                  <span className="value">69</span>
+                                                : null}
+                                                {this.state.planProfesional == 2 ?
+                                                  <span className="value">690</span>
+                                                : null}
                                                 / per year
                                                 <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
@@ -175,7 +198,7 @@ export default class Landing extends Component {
                                                     <span>Beginner</span>
                                                 </li>
                                                 <li className="period">
-                                                    <Tabs disabled defaultActiveKey={1} animation={false}>
+                                                    <Tabs onSelect={this.handleBeginner} defaultActiveKey={this.state.planBeginner} animation={false}>
                                                         <Tab eventKey={1} title="month"></Tab>
                                                         <Tab eventKey={2} title="year"></Tab>
                                                     </Tabs>
@@ -187,7 +210,13 @@ export default class Landing extends Component {
                                         <Col md={12}>
                                             <p>
                                                 <span className="dollar">$</span>
-                                                <span className="value">29</span>
+                                                  <span className="dollar">$</span>
+                                                  {this.state.planBeginner == 1 ?
+                                                    <span className="value">29</span>
+                                                  : null}
+                                                  {this.state.planBeginner == 2 ?
+                                                    <span className="value">290</span>
+                                                  : null}
                                                 / per month</p>
                                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                                             <p>
