@@ -116,7 +116,7 @@ export default class Dashboard extends MixinAuth {
     }
 
     exportData() {
-        window.location = format('{0}/v1/dashboard/excel', this.state.url);
+        //window.location = format('{0}/v1/dashboard/excel', this.state.url);
     }
 
     calculate() {
