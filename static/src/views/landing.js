@@ -16,6 +16,7 @@ import {
     Tab
 } from 'react-bootstrap';
 
+import Loader from 'react-loader';
 import {Link, browserHistory} from 'react-router';
 import React, {Component} from 'react';
 
@@ -29,7 +30,8 @@ class Subscribe extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: ''
+            email: '',
+            loaded: true
         };
         this.subscribe = this.subscribe.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
@@ -47,11 +49,14 @@ class Subscribe extends Component {
                 let data = {
                     email: _.state.email
                 }
+                _.setState({loaded: false});
                 apiProfiles.subscribe(data).then((response) => {
                     _.setState({email: ''});
+                    _.setState({loaded: true});
                     return response;
                 }).then((json) => {
                     _.setState({email: ''});
+                    _.setState({loaded: true});
                     return json;
                 });
             }
@@ -74,9 +79,11 @@ class Subscribe extends Component {
                 <FormGroup style={{
                     'width': '20%'
                 }}>
+                  <Loader loaded={this.state.loaded}>
                     <Button type="submit" onClick={this.subscribe} bsStyle="success">
                         Subscribe
                     </Button>
+                  </Loader>
                 </FormGroup>
             </Form>
         )
