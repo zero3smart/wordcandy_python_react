@@ -75,7 +75,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
 
 
 class ExportSerializer(serializers.ModelSerializer):
-    photo = Base64ImageField()
+    photo = Base64ImageField(required=False)
 
     class Meta:
         model = Export

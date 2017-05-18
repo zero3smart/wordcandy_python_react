@@ -162,6 +162,8 @@ WEBPACK_LOADER = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+WEBSITE = 'http://www.wordcandy.io/'
+
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'

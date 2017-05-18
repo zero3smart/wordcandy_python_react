@@ -7,13 +7,13 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.cache import cache
 
+import time
 import requests
 from datetime import datetime
 
-from .serializers import SynonymsSerializer, AntonymsSerializer, ShopSerializer, TemplateSerializer, SubscribeSerializer
+from .serializers import SynonymsSerializer, AntonymsSerializer, ShopSerializer, TemplateSerializer, SubscribeSerializer, ExportSerializer
 from .models import Shop, Subscribe, Word
 
-from openpyxl.writer.excel import save_virtual_workbook
 from openpyxl import Workbook
 
 from rest_framework_tracking.mixins import LoggingMixin
@@ -107,20 +107,26 @@ class KeywordToolView(LoggingMixin, GenericAPIView):
 
 
 class ExcelView(LoggingMixin, GenericAPIView):
+    serializer_class = ExportSerializer
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         """
         Return excel file
         """
-        filename = "wordcandy.xlsx"
-        wb = Workbook()
-        response = HttpResponse(save_virtual_workbook(
-            wb), content_type='application/vnd.ms-excel')
-        response["Content-Disposition"] = 'attachment; filename="' + \
-            filename + '"'
-        response.write(save_virtual_workbook(wb))
-        return response
-
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            wb = Workbook()
+            ws = wb.create_sheet()
+            timestamp = int(time.time())
+            wb.save('{0}/{1}.xlsx'.format(settings.MEDIA_ROOT, timestamp))
+            result = {
+                'file': '{0}{1}/exel/{2}.xlsx'.format(settings.WEBSITE, settings.MEDIA_URL, timestamp),
+                'data': serializer.data
+            }
+            return Response(result, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ShopList(LoggingMixin, GenericAPIView):
     serializer_class = ShopSerializer
