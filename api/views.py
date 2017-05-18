@@ -119,9 +119,9 @@ class ExcelView(LoggingMixin, GenericAPIView):
             wb = Workbook()
             ws = wb.create_sheet()
             timestamp = int(time.time())
-            wb.save('{0}/{1}.xlsx'.format(settings.MEDIA_ROOT, timestamp))
+            wb.save('{0}/exel/{1}.xlsx'.format(settings.MEDIA_ROOT, timestamp))
             result = {
-                'file': '{0}{1}/exel/{2}.xlsx'.format(settings.WEBSITE, settings.MEDIA_URL, timestamp),
+                'file': '{0}{1}exel/{2}.xlsx'.format(settings.WEBSITE, settings.MEDIA_URL, timestamp),
                 'data': serializer.data
             }
             return Response(result, status=status.HTTP_201_CREATED)
