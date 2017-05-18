@@ -23,6 +23,7 @@ import Loader from 'react-loader';
 import format from 'string-format';
 
 import MixinAuth from '../mixins/auth';
+import {apiDashboard} from '../api/dashboard';
 
 export default class Dashboard extends MixinAuth {
 
@@ -39,6 +40,8 @@ export default class Dashboard extends MixinAuth {
             activeTemplate: 0,
             activeShop: 0,
             loaded: true,
+            imageBase64: '',
+            loadedExport: true,
             username: localStorage.getItem('username'),
             thumbnail: '/static/images/dashboard/photo.png',
             url: 'http://www.wordcandy.io'
@@ -111,12 +114,36 @@ export default class Dashboard extends MixinAuth {
     }
 
     onUploadImage(files) {
+        var _ = this;
+        var file = files[0]
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          _.setState({
+            imageBase64: event.target.result
+          })
+        };
+        reader.readAsDataURL(file);
+
         this.setState({thumbnail: files[0]['preview']
         });
     }
 
     exportData() {
-        //window.location = format('{0}/v1/dashboard/excel', this.state.url);
+        var _ = this;
+        _.setState({loadedExport: false});
+        var data = {
+            'product_name': this.state.template.title,
+            'first_description': this.state.template.first_description,
+            'second_description': this.state.template.second_description,
+            'keywords': this.state.tags.toString()
+        }
+        if (this.state.imageBase64.length > 0) {
+          data['photo'] = this.state.imageBase64;
+        }
+        apiDashboard.export(data).then(function(response) {
+            _.setState({loadedExport: true});
+            window.location = response.data['file'];
+        });
     }
 
     calculate() {
@@ -136,13 +163,9 @@ export default class Dashboard extends MixinAuth {
                 axios.get(format('{0}/v1/dashboard/keywordtool/', _.state.url), data).then(function(response) {
                     var stats = [];
                     response.data['keywords'].forEach(function(element) {
-                      if (parseInt(element['volume']) > 0) {
-                        stats.push({
-                          'name': element['name'],
-                          'active': false,
-                          'volume': element['volume'],
-                        })
-                      }
+                        if (parseInt(element['volume']) > 0) {
+                            stats.push({'name': element['name'], 'active': false, 'volume': element['volume']})
+                        }
                     });
                     _.setState({stats: stats})
                     _.setState({loaded: true})
@@ -382,10 +405,12 @@ export default class Dashboard extends MixinAuth {
                     <Row>
                         <Col md={2}></Col>
                         <Col md={8} className="text-right">
-                            <Button bsStyle="success" onClick={this.exportData}>
-                                <i className="icon ion-arrow-down-c"></i>
-                                Export data
-                            </Button>
+                            <Loader loaded={this.state.loadedExport}>
+                                <Button bsStyle="success" disabled={this.state.tags.length == 0} onClick={this.exportData}>
+                                    <i className="icon ion-arrow-down-c"></i>
+                                    Export data
+                                </Button>
+                            </Loader>
                         </Col>
                         <Col md={2}></Col>
                     </Row>
