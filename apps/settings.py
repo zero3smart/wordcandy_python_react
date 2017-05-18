@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     'api'
 ]
 
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_OkXxUFJ2RjarNh7bOb94IRLC")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_M9WMTgLbO0bpGhrGbJh9UOTs")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_live_T0LhQjr6GkIDIJYJc3xJrnYu")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_live_Y2V173ann7w9Z9HTxjN7CCps")
 
 DATABASES = {
     'default': {
