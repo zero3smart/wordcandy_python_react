@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+
 from jsonfield import JSONField
 
 
@@ -20,6 +22,19 @@ class Shop(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Export(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True)
+    photo = models.ImageField(upload_to='photo', blank=True, null=True)
+    product_name = models.CharField(max_length=512, blank=True)
+    first_description = models.CharField(max_length=512, blank=True)
+    second_description = models.CharField(max_length=512, blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.product_name
 
 
 class Template(models.Model):
