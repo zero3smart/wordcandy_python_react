@@ -35,7 +35,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^docs/$', schema_view),
     url(r'^v1/', include('rest_auth.urls')),
-    url(r'^v1/registration/account-confirm-email/(?P<key>\w+)$', RedirectView.as_view(url='/', permanent=True), name='account_confirm_email'),
     url(r'^v1/registration/', include('rest_auth.registration.urls')),
     url(r'^v1/dashboard/', include('api.urls')),
 ]
