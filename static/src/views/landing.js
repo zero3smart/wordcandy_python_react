@@ -185,7 +185,7 @@ export default class Landing extends Component {
                                                   <Image className="discount" width={'116px'} height={'25px'} src="/static/images/landing/discount.png"/></span>
                                                 : null}
                                             </p>
-                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                            <p>We’ve set costs with your business in mind. Our goal is to double each cent you’ll spend with WordCandy.</p>
                                             <p>
                                                 <Link to="/sign-up">
                                                     <Button bsStyle="success">Start 3 day FREE trial</Button>
@@ -224,7 +224,7 @@ export default class Landing extends Component {
                                                     <span><span className="value">290</span> / per year</span>
                                                   : null}
                                             </p>
-                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                            <p>We’ve set costs with your business in mind. Our goal is to double each cent you’ll spend with WordCandy.</p>
                                             <p>
                                                 <Link to="/sign-up">
                                                     <Button bsStyle="success">Start 3 day FREE trial</Button>
@@ -251,33 +251,39 @@ export default class Landing extends Component {
                         <h3 className="text-primary">Testimonals</h3>
                         <Row>
                             <Col md={4}>
-                                <Panel>
+                                <Panel style={{
+                                    height: '300px'
+                                  }}>
                                     <p><Image src="/static/images/landing/profile1.png" circle/></p>
                                     <p>
-                                        <b>Iren Adler</b>
+                                        <b>Roman Semenov</b>
                                     </p>
-                                    <p className="position">Sales Manager</p>
-                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">Entrepreneur</p>
+                                    <p className="description">WordCandy is very useful tool for my merchandising business. I’ve tried beta and want more. Hope for your success guys, you have me as a customer for sure!</p>
                                 </Panel>
                             </Col>
                             <Col md={4}>
-                                <Panel>
+                                <Panel style={{
+                                    height: '300px'
+                                  }}>
                                     <p><Image src="/static/images/landing/profile2.png" circle/></p>
                                     <p>
-                                        <b>Iren Adler</b>
+                                        <b>Sophy Brown</b>
                                     </p>
-                                    <p className="position">Sales Manager</p>
-                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">Sales manager</p>
+                                    <p className="description">Description templates saves me a lot of time in everyday work. Customers support is awesome! Great job!</p>
                                 </Panel>
                             </Col>
                             <Col md={4}>
-                                <Panel>
+                                <Panel style={{
+                                    height: '300px'
+                                  }}>
                                     <p><Image src="/static/images/landing/profile3.png" circle/></p>
                                     <p>
-                                        <b>Iren Adler</b>
+                                        <b>Jeremy Meirs</b>
                                     </p>
-                                    <p className="position">Sales Manager</p>
-                                    <p className="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p className="position">CBDO</p>
+                                    <p className="description">I’m going to launch my sales team into the WordCandy. This tool is simple and effective! Looking forward to see more features inside.</p>
                                 </Panel>
                             </Col>
                         </Row>
