@@ -56,7 +56,7 @@ class Forms extends Component {
                             _.setState({errorText: errorText});
                             _.setState({error: true});
                             break;
-                        case 200:
+                        case 201:
                             localStorage.setItem('key', response.key);
                             localStorage.setItem('username', data['username']);
                             browserHistory.push('/dashboard');
