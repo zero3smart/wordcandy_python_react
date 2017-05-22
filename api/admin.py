@@ -11,7 +11,7 @@ admin.site.register(Template, TemplateAdmin)
 
 
 class ExportAdmin(admin.ModelAdmin):
-    list_display = ['product_name',]
+    list_display = ['keywords',]
     date_hierarchy = 'created_date'
 
 admin.site.register(Export, ExportAdmin)
