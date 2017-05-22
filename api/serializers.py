@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from api.models import Shop, Template, Subscribe, Export
-
+from easy_thumbnails.files import get_thumbnailer
+from django.conf import settings
 
 class Base64ImageField(serializers.ImageField):
     """
@@ -76,10 +77,19 @@ class SubscribeSerializer(serializers.ModelSerializer):
 
 class ExportSerializer(serializers.ModelSerializer):
     photo = Base64ImageField(required=False)
+    xls_photo = serializers.SerializerMethodField('is_photo')
+
+    def is_photo(self, obj):
+        try:
+            options = {'size': (125, 125), 'crop': True, 'quality': 99}
+            photo = get_thumbnailer(obj.photo).get_thumbnail(options).url
+            return photo
+        except Exception as e:
+            return ''
 
     class Meta:
         model = Export
-        exclude = ()
+        fields = ('photo', 'xls_photo', 'product_name', 'first_description', 'second_description', 'keywords')
 
 
 

@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_framework_swagger',
     'djstripe',
-    'api'
+    'api',
+    'easy_thumbnails'
 ]
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_live_T0LhQjr6GkIDIJYJc3xJrnYu")

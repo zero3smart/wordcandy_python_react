@@ -37,3 +37,4 @@ django-cors-headers==2.0.2
 jsonfield==2.0.1
 pycurl==7.43.0
 Pillow==4.1.0
+easy-thumbnails==2.4.1

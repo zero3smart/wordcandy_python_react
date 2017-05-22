@@ -121,7 +121,7 @@ class ExcelView(LoggingMixin, GenericAPIView):
             ws = wb.active
             ws['A1'] = 'TEE SHIRT DESIGN'
             if serializer.data['photo']:
-                img = Image('{0}{1}'.format(settings.MEDIA_ROOT[:-6], serializer.data['photo']))
+                img = Image('{0}{1}'.format(settings.MEDIA_ROOT[:-6], serializer.data['xls_photo']))
                 ws.add_image(img, 'A2')
             ws['B1'] = 'PRODUCT TITLE'
             ws['B2'] = serializer.data['product_name']
@@ -131,6 +131,14 @@ class ExcelView(LoggingMixin, GenericAPIView):
             ws['D2'] = serializer.data['second_description']
             ws['E1'] = 'SELECTED KEYWORDS FROM WC'
             ws['E2'] = serializer.data['keywords']
+
+            ws.column_dimensions["A"].width = 60
+            ws.column_dimensions["B"].width = 60
+            ws.column_dimensions["C"].width = 60
+            ws.column_dimensions["D"].width = 60
+            ws.column_dimensions["E"].width = 60
+            ws.row_dimensions[2].height = 100
+
             timestamp = int(time.time())
             wb.save('{0}/exel/{1}.xlsx'.format(settings.MEDIA_ROOT, timestamp))
             result = {
