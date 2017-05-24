@@ -20,10 +20,12 @@ import ReactDOM from 'react-dom';
 import Loader from 'react-loader';
 
 import {apiProfiles} from '../api/profiles';
+import ModalForgetPassword from '../modal/forgetPassword';
+
 
 class Forms extends Component {
     componentDidMount() {
-        $('form').validator();
+        $('#sign-in').validator();
     }
 
     constructor(props) {
@@ -38,10 +40,10 @@ class Forms extends Component {
 
     signIn(e) {
         var _ = this;
-        $('form').validator().on('submit', function(e) {
+        $('#sign-in').validator().on('submit', function(e) {
             if (e.isDefaultPrevented()) {} else {
                 let data = {};
-                $('form').serializeArray().map(item => {
+                $('#sign-in').serializeArray().map(item => {
                     data[item.name] = item.value;
                 });
                 _.setState({loaded: false});
@@ -69,7 +71,7 @@ class Forms extends Component {
 
     render() {
         return (
-            <Form horizontal data-toggle="validator" role="form">
+            <Form horizontal id="sign-in" data-toggle="validator" role="form">
                 <FormGroup>
                     <Col md={12}>
                         <FormControl type="text" name="username" id="username" placeholder="Username" required/>
@@ -89,6 +91,9 @@ class Forms extends Component {
                               Login
                           </Button>
                         </Loader>
+                    </Col>
+                    <Col md={12} className="forget-password">
+                      <ModalForgetPassword/>
                     </Col>
                     <Col md={12} className="text-center error-text">
                         {this.state.error

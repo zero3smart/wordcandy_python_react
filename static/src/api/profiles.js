@@ -40,6 +40,47 @@ exports.apiProfiles = {
             }).catch(function(error) {
                 return error;
             });
+
+    },
+    reset: function(data) {
+        return axios({
+                url: url + "password/reset/",
+                method: 'post',
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data,
+                validateStatus: function (status) {
+                  return status;
+                }
+            })
+            .then(response => {
+                return response;
+            }).catch(function(error) {
+                return error;
+            });
+
+    },
+    resetConfirm: function(data) {
+        return axios({
+                url: url + "password/reset/confirm/",
+                method: 'post',
+                responseType: 'json',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data,
+                validateStatus: function (status) {
+                  return status;
+                }
+            })
+            .then(response => {
+                return response;
+            }).catch(function(error) {
+                return error;
+            });
+
     },
     subscribe: function(data) {
         return axios({

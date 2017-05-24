@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from main.views import  IndexView
+from main.views import  IndexView, ResetPasswordView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
@@ -36,6 +36,8 @@ urlpatterns = [
     url(r'^docs/$', schema_view),
     url(r'^v1/', include('rest_auth.urls')),
     url(r'^v1/registration/', include('rest_auth.registration.urls')),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', ResetPasswordView.as_view(), name='password_reset_confirm'),
+    url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', {'template_name': 'index.html'}, name="password_reset_complete"),
     url(r'^v1/dashboard/', include('api.urls')),
 ]
 

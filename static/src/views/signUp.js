@@ -20,7 +20,6 @@ import ReactDOM from 'react-dom';
 import Loader from 'react-loader';
 
 import {apiProfiles} from '../api/profiles';
-import axios from 'axios';
 
 class Forms extends Component {
     componentDidMount() {
